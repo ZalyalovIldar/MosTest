@@ -11,6 +11,13 @@
 		7C0453CB1E32438E00A5EE9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C0453CA1E32438E00A5EE9F /* Assets.xcassets */; };
 		7C0453CE1E32438E00A5EE9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0453CC1E32438E00A5EE9F /* LaunchScreen.storyboard */; };
 		7C0453DC1E32454600A5EE9F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453DB1E32454600A5EE9F /* Constants.swift */; };
+		7C0453E01E324CAB00A5EE9F /* AlamofireHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453DF1E324CAB00A5EE9F /* AlamofireHelpers.swift */; };
+		7C0453E51E32518600A5EE9F /* VKErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453E41E32518600A5EE9F /* VKErrors.swift */; };
+		7C0453E71E3252A800A5EE9F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453E61E3252A800A5EE9F /* Router.swift */; };
+		7C0453E91E32543D00A5EE9F /* VKErrorsDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453E81E32543D00A5EE9F /* VKErrorsDescription.swift */; };
+		7C0453EB1E32546A00A5EE9F /* VKBackendErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453EA1E32546A00A5EE9F /* VKBackendErrors.swift */; };
+		7C0453ED1E3255DE00A5EE9F /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453EC1E3255DE00A5EE9F /* Alerts.swift */; };
+		7C0453EF1E32562000A5EE9F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453EE1E32562000A5EE9F /* Extensions.swift */; };
 		E6FA11379E50BD6077B46A7A /* Pods_Abstract_VK_MOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3CC4DC91F9DBFF7E7867D5 /* Pods_Abstract_VK_MOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +30,14 @@
 		7C0453CD1E32438E00A5EE9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C0453CF1E32438E00A5EE9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C0453DB1E32454600A5EE9F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7C0453DF1E324CAB00A5EE9F /* AlamofireHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireHelpers.swift; sourceTree = "<group>"; };
+		7C0453E21E324DBB00A5EE9F /* BridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgeHeader.h; sourceTree = "<group>"; };
+		7C0453E41E32518600A5EE9F /* VKErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKErrors.swift; sourceTree = "<group>"; };
+		7C0453E61E3252A800A5EE9F /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		7C0453E81E32543D00A5EE9F /* VKErrorsDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKErrorsDescription.swift; sourceTree = "<group>"; };
+		7C0453EA1E32546A00A5EE9F /* VKBackendErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKBackendErrors.swift; sourceTree = "<group>"; };
+		7C0453EC1E3255DE00A5EE9F /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		7C0453EE1E32562000A5EE9F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8B3CC4DC91F9DBFF7E7867D5 /* Pods_Abstract_VK_MOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Abstract_VK_MOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -100,6 +115,7 @@
 				7C0453CA1E32438E00A5EE9F /* Assets.xcassets */,
 				7C0453CC1E32438E00A5EE9F /* LaunchScreen.storyboard */,
 				7C0453CF1E32438E00A5EE9F /* Info.plist */,
+				7C0453E21E324DBB00A5EE9F /* BridgeHeader.h */,
 			);
 			name = SupportingFiels;
 			path = "VK-MOS";
@@ -115,6 +131,8 @@
 		7C0453DA1E3244CA00A5EE9F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				7C0453EC1E3255DE00A5EE9F /* Alerts.swift */,
+				7C0453EE1E32562000A5EE9F /* Extensions.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -129,8 +147,21 @@
 		7C0453DE1E32469800A5EE9F /* API */ = {
 			isa = PBXGroup;
 			children = (
+				7C0453DF1E324CAB00A5EE9F /* AlamofireHelpers.swift */,
+				7C0453E61E3252A800A5EE9F /* Router.swift */,
+				7C0453E31E32516C00A5EE9F /* Errors */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		7C0453E31E32516C00A5EE9F /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				7C0453E41E32518600A5EE9F /* VKErrors.swift */,
+				7C0453E81E32543D00A5EE9F /* VKErrorsDescription.swift */,
+				7C0453EA1E32546A00A5EE9F /* VKBackendErrors.swift */,
+			);
+			name = Errors;
 			sourceTree = "<group>";
 		};
 		7E2DC620F37557B3927F013A /* Frameworks */ = {
@@ -273,8 +304,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C0453E91E32543D00A5EE9F /* VKErrorsDescription.swift in Sources */,
+				7C0453EF1E32562000A5EE9F /* Extensions.swift in Sources */,
 				7C0453C41E32438E00A5EE9F /* AppDelegate.swift in Sources */,
+				7C0453ED1E3255DE00A5EE9F /* Alerts.swift in Sources */,
+				7C0453EB1E32546A00A5EE9F /* VKBackendErrors.swift in Sources */,
+				7C0453E01E324CAB00A5EE9F /* AlamofireHelpers.swift in Sources */,
+				7C0453E71E3252A800A5EE9F /* Router.swift in Sources */,
 				7C0453DC1E32454600A5EE9F /* Constants.swift in Sources */,
+				7C0453E51E32518600A5EE9F /* VKErrors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +434,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.personal.VK-MOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "VK-MOS/BridgeHeader.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -411,6 +450,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.personal.VK-MOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "VK-MOS/BridgeHeader.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -434,6 +474,7 @@
 				7C0453D41E32438E00A5EE9F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
