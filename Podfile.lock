@@ -11,6 +11,9 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SVProgressHUD (2.1.2)
+  - XCGLogger (4.0.0):
+    - XCGLogger/Core (= 4.0.0)
+  - XCGLogger/Core (4.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
@@ -20,15 +23,22 @@ DEPENDENCIES:
   - RealmSwift
   - SDWebImage
   - SVProgressHUD
+  - XCGLogger (from `https://github.com/DaveWoodCom/XCGLogger.git`, branch `swift_3.0`)
 
 EXTERNAL SOURCES:
   FSHelpers+Swift:
     :git: https://github.com/fs/FSHelper.git
+  XCGLogger:
+    :branch: swift_3.0
+    :git: https://github.com/DaveWoodCom/XCGLogger.git
 
 CHECKOUT OPTIONS:
   FSHelpers+Swift:
     :commit: 73f1431d9921de91f7ca0ee7707cdb75b18fa8a4
     :git: https://github.com/fs/FSHelper.git
+  XCGLogger:
+    :commit: 2fd27c92eb102bcf09f3176a230e42e38cacd4a2
+    :git: https://github.com/DaveWoodCom/XCGLogger.git
 
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
@@ -38,7 +48,8 @@ SPEC CHECKSUMS:
   RealmSwift: 17d6ee30b6f9df86364408c2197492e33bfea567
   SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: d89f70c22d10c77465ac4f376217e124b28eec4c
+PODFILE CHECKSUM: 65b5b0aab48e63667fc5861a70f44e9784ce22a3
 
 COCOAPODS: 1.1.1

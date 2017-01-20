@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+var Logger: XCGLogger {return XCGLogger.default}
+
 /*--------------User Defaults keys-------------*/
 enum FSUserDefaultsKey {
     

@@ -4,7 +4,9 @@
  use_frameworks!
 
 abstract_target 'Abstract' do 
+    # Helpers
     pod 'FSHelpers+Swift', :git => 'https://github.com/fs/FSHelper.git'
+    pod 'XCGLogger', :git => 'https://github.com/DaveWoodCom/XCGLogger.git', :branch => 'swift_3.0'
 
     # Libraries
     pod 'Realm'
