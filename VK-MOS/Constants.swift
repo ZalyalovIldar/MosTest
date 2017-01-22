@@ -10,18 +10,24 @@ import Foundation
 import UIKit
 
 var Logger: XCGLogger {return XCGLogger.default}
-
+let VKAuthURL:URL = URL(string:"https://oauth.vk.com/authorize?client_id=5834912&scope=friends,offline&DISPLAY=touch&REDIRECT_URI=http://oauth.vk.com/blank.html&response_type=token")!
 /*--------------User Defaults keys-------------*/
-enum FSUserDefaultsKey {
+enum VKUserDefaultsKey {
+    static let UserAccesToken = "UserAccesToken"
     
 }
 
 /*----------Notifications---------*/
-enum FSNotification {
+enum VKNotification {
     
 }
 
 /*----------Colors----------*/
+enum AppColors
+{
+    static let MainColor = UIColor(fs_hexString: "224d71")
+    static let GoldColor = UIColor(fs_hexString: "ebc44b")
+}
 
 /*----------Helpers----------*/
 private func GenerateKey (_ prefix: String, key: String) -> String {

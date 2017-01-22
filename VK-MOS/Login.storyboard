@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pyQ-rb-aPB">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login Controller-->
+        <scene sceneID="2qT-PB-MrY">
+            <objects>
+                <viewController id="AiL-8r-sCY" customClass="LoginController" customModule="VK_MOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AyZ-Cs-X3w"/>
+                        <viewControllerLayoutGuide type="bottom" id="EKS-5n-eYb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fPi-mQ-oDY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-Background" translatesAutoresizingMaskIntoConstraints="NO" id="rAr-Z6-X7s">
+                                <rect key="frame" x="0.0" y="-44" width="375" height="711"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vD3-QL-yZK">
+                                <rect key="frame" x="125" y="423" width="124" height="44"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" title="Login in VK">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fs_cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fs_borderWidth">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fs_borderColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="VQX-ww-YAe" kind="show" id="8hW-tP-yHy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vD3-QL-yZK" firstAttribute="centerX" secondItem="rAr-Z6-X7s" secondAttribute="centerX" id="XJd-nK-xd6"/>
+                            <constraint firstItem="rAr-Z6-X7s" firstAttribute="top" secondItem="AyZ-Cs-X3w" secondAttribute="bottom" constant="-64" id="blH-47-qTh"/>
+                            <constraint firstItem="rAr-Z6-X7s" firstAttribute="leading" secondItem="fPi-mQ-oDY" secondAttribute="leading" id="e3f-F7-WG7"/>
+                            <constraint firstAttribute="trailing" secondItem="rAr-Z6-X7s" secondAttribute="trailing" id="j82-A6-GGT"/>
+                            <constraint firstItem="EKS-5n-eYb" firstAttribute="top" secondItem="rAr-Z6-X7s" secondAttribute="bottom" id="sWD-8e-np3"/>
+                            <constraint firstItem="vD3-QL-yZK" firstAttribute="centerY" secondItem="rAr-Z6-X7s" secondAttribute="centerY" constant="133.5" id="sao-do-zmW"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="fs_masksToBounds" value="NO"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <navigationItem key="navigationItem" id="HEz-oe-3SE"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="loginButton" destination="vD3-QL-yZK" id="5R6-PT-ptj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HeT-lD-N9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-263.19999999999999" y="215.44227886056973"/>
+        </scene>
+        <!--Authorization-->
+        <scene sceneID="2KV-oq-boH">
+            <objects>
+                <viewController id="VQX-ww-YAe" customClass="AuthWebViewController" customModule="VK_MOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VNQ-GH-1Gb"/>
+                        <viewControllerLayoutGuide type="bottom" id="RvC-EO-Aor"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uxi-OB-Y3d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bIv-F8-Qe2">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="VQX-ww-YAe" id="Cw6-6A-WFS"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bIv-F8-Qe2" firstAttribute="top" secondItem="VNQ-GH-1Gb" secondAttribute="bottom" id="DgJ-bq-GFE"/>
+                            <constraint firstItem="RvC-EO-Aor" firstAttribute="top" secondItem="bIv-F8-Qe2" secondAttribute="bottom" id="SAi-XP-Ftm"/>
+                            <constraint firstAttribute="trailing" secondItem="bIv-F8-Qe2" secondAttribute="trailing" id="cBw-7h-1EU"/>
+                            <constraint firstItem="bIv-F8-Qe2" firstAttribute="leading" secondItem="Uxi-OB-Y3d" secondAttribute="leading" id="j0D-ZU-lY1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Authorization" id="IOZ-7D-caF">
+                        <barButtonItem key="backBarButtonItem" title="   " id="nhH-Bo-drX"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="bIv-F8-Qe2" id="4oS-9w-Vhf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4QL-dJ-S3c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="546" y="230"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="txt-ej-R3h">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pyQ-rb-aPB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="96S-sj-oVi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="AiL-8r-sCY" kind="relationship" relationship="rootViewController" id="Un0-nb-a4x"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L2x-0e-c6w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-998" y="215"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="login-Background" width="1040" height="1526"/>
+    </resources>
+</document>
