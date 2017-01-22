@@ -18,6 +18,11 @@
 		7C0453EB1E32546A00A5EE9F /* VKBackendErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453EA1E32546A00A5EE9F /* VKBackendErrors.swift */; };
 		7C0453ED1E3255DE00A5EE9F /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453EC1E3255DE00A5EE9F /* Alerts.swift */; };
 		7C0453EF1E32562000A5EE9F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453EE1E32562000A5EE9F /* Extensions.swift */; };
+		7C0453F11E325A3600A5EE9F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0453F01E325A3600A5EE9F /* Login.storyboard */; };
+		7C0453F31E325BE200A5EE9F /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453F21E325BE200A5EE9F /* LoginController.swift */; };
+		7C0453F51E334FCD00A5EE9F /* AuthWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453F41E334FCD00A5EE9F /* AuthWebViewController.swift */; };
+		7CEDFC1C1E34E36700AA6C6A /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CEDFC1B1E34E36700AA6C6A /* News.storyboard */; };
+		7CEDFC1E1E34E38400AA6C6A /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEDFC1D1E34E38400AA6C6A /* NewsController.swift */; };
 		E6FA11379E50BD6077B46A7A /* Pods_Abstract_VK_MOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3CC4DC91F9DBFF7E7867D5 /* Pods_Abstract_VK_MOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +43,11 @@
 		7C0453EA1E32546A00A5EE9F /* VKBackendErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKBackendErrors.swift; sourceTree = "<group>"; };
 		7C0453EC1E3255DE00A5EE9F /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		7C0453EE1E32562000A5EE9F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7C0453F01E325A3600A5EE9F /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		7C0453F21E325BE200A5EE9F /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		7C0453F41E334FCD00A5EE9F /* AuthWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthWebViewController.swift; sourceTree = "<group>"; };
+		7CEDFC1B1E34E36700AA6C6A /* News.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
+		7CEDFC1D1E34E38400AA6C6A /* NewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
 		8B3CC4DC91F9DBFF7E7867D5 /* Pods_Abstract_VK_MOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Abstract_VK_MOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -105,6 +115,8 @@
 		7C0453D71E32447300A5EE9F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7C0453F61E334FD200A5EE9F /* Authorization */,
+				7CEDFC1F1E34E38800AA6C6A /* News */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -124,6 +136,8 @@
 		7C0453D91E3244BD00A5EE9F /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				7C0453F01E325A3600A5EE9F /* Login.storyboard */,
+				7CEDFC1B1E34E36700AA6C6A /* News.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -162,6 +176,23 @@
 				7C0453EA1E32546A00A5EE9F /* VKBackendErrors.swift */,
 			);
 			name = Errors;
+			sourceTree = "<group>";
+		};
+		7C0453F61E334FD200A5EE9F /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				7C0453F21E325BE200A5EE9F /* LoginController.swift */,
+				7C0453F41E334FCD00A5EE9F /* AuthWebViewController.swift */,
+			);
+			name = Authorization;
+			sourceTree = "<group>";
+		};
+		7CEDFC1F1E34E38800AA6C6A /* News */ = {
+			isa = PBXGroup;
+			children = (
+				7CEDFC1D1E34E38400AA6C6A /* NewsController.swift */,
+			);
+			name = News;
 			sourceTree = "<group>";
 		};
 		7E2DC620F37557B3927F013A /* Frameworks */ = {
@@ -246,6 +277,8 @@
 			files = (
 				7C0453CE1E32438E00A5EE9F /* LaunchScreen.storyboard in Resources */,
 				7C0453CB1E32438E00A5EE9F /* Assets.xcassets in Resources */,
+				7C0453F11E325A3600A5EE9F /* Login.storyboard in Resources */,
+				7CEDFC1C1E34E36700AA6C6A /* News.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +337,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CEDFC1E1E34E38400AA6C6A /* NewsController.swift in Sources */,
 				7C0453E91E32543D00A5EE9F /* VKErrorsDescription.swift in Sources */,
+				7C0453F51E334FCD00A5EE9F /* AuthWebViewController.swift in Sources */,
 				7C0453EF1E32562000A5EE9F /* Extensions.swift in Sources */,
 				7C0453C41E32438E00A5EE9F /* AppDelegate.swift in Sources */,
 				7C0453ED1E3255DE00A5EE9F /* Alerts.swift in Sources */,
@@ -313,6 +348,7 @@
 				7C0453E71E3252A800A5EE9F /* Router.swift in Sources */,
 				7C0453DC1E32454600A5EE9F /* Constants.swift in Sources */,
 				7C0453E51E32518600A5EE9F /* VKErrors.swift in Sources */,
+				7C0453F31E325BE200A5EE9F /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

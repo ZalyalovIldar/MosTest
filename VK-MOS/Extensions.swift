@@ -9,8 +9,19 @@
 import Foundation
 
 extension UIAlertController{
-    func presentIfNoAlertsPresented() {
+    func presentOnModal() {
         guard   let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+            let window = appDelegate.window else {return}
+        var presentedController = window.rootViewController
+        var nextController = presentedController?.presentedViewController
+        while nextController != nil  {
+            presentedController = nextController
+            nextController = presentedController?.presentedViewController
+        }
+        presentedController?.present(self, animated: true, completion: nil)
+    }
+    func presentIfNoAlertsPresented() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
             let window = appDelegate.window else {return}
         var presentedController = window.rootViewController
         var nextController = presentedController?.presentedViewController

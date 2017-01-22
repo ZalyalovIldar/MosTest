@@ -22,3 +22,14 @@ func ShowUnauthorizedAlert() {
         alertController.presentIfNoAlertsPresented()
     }
 }
+
+func ShowErrorAlert(_ title: String? = "Sorry", message: String? = "Something went wrong") {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    
+    let alertButton = UIAlertAction(title: "OK", style: .default) { (alertAction: UIAlertAction) -> Void in
+        alertController.dismiss(animated: true, completion: nil)
+    }
+    alertController.addAction(alertButton)
+    
+    alertController.presentOnModal()
+}

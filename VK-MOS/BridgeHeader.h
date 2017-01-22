@@ -12,3 +12,4 @@
 @import SVProgressHUD;
 @import SDWebImage;
 @import XCGLogger;
+@import FSHelpers_Swift;

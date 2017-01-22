@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        self.setUpProject()
         return true
     }
 
@@ -41,6 +42,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
 
+extension AppDelegate{
+    
+    func setUpProject(){
+        self.setupLogger()
+        self.setupSDWebImage()
+        self.setupSVProgressHUD()
+        self.setupAppearance()
+    }
+    
+    func setupAppearance() {
+        
+        let navigationBar = UINavigationBar.appearance()
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationBar.barTintColor = AppColors.MainColor
+        navigationBar.tintColor = UIColor.white
+        navigationBar.isTranslucent = false
+    }
+    
+    func setupLogger() {
+        Logger.setup(level: .debug, showLogIdentifier: false, showFunctionName: false, showThreadName: true, showLevel: false, showFileNames: true, showLineNumbers: true, showDate: true, writeToFile: nil, fileLevel: .none)
+        
+        Logger.dateFormatter?.dateFormat = "HH:mm:ss.SSS"
+        
+        print()
+    }
+    
+    func setupSDWebImage() {
+        let imageCache:SDImageCache = SDImageCache.shared()
+        imageCache.maxCacheSize     = UInt(1024*1024*50) // 100mb on disk
+        imageCache.maxMemoryCost    = UInt(1024*1024*10)  // 10mb in memory
+        
+        let imageDownloader:SDWebImageDownloader = SDWebImageDownloader.shared()
+        imageDownloader.downloadTimeout          = 60.0
+    }
+    
+    func setupSVProgressHUD() {
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.gradient)
+    }
+}
