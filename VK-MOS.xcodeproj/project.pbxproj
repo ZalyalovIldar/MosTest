@@ -21,6 +21,9 @@
 		7C0453F11E325A3600A5EE9F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0453F01E325A3600A5EE9F /* Login.storyboard */; };
 		7C0453F31E325BE200A5EE9F /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453F21E325BE200A5EE9F /* LoginController.swift */; };
 		7C0453F51E334FCD00A5EE9F /* AuthWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453F41E334FCD00A5EE9F /* AuthWebViewController.swift */; };
+		7CA3DE861E34F5C400D26CE2 /* ScreensSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DE851E34F5C400D26CE2 /* ScreensSwitcher.swift */; };
+		7CA3DE8C1E34FE3400D26CE2 /* CustomLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA3DE8B1E34FE3400D26CE2 /* CustomLaunchScreen.storyboard */; };
+		7CA3DE8E1E35234E00D26CE2 /* CustomLaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DE8D1E35234E00D26CE2 /* CustomLaunchScreen.swift */; };
 		7CEDFC1C1E34E36700AA6C6A /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CEDFC1B1E34E36700AA6C6A /* News.storyboard */; };
 		7CEDFC1E1E34E38400AA6C6A /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEDFC1D1E34E38400AA6C6A /* NewsController.swift */; };
 		E6FA11379E50BD6077B46A7A /* Pods_Abstract_VK_MOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3CC4DC91F9DBFF7E7867D5 /* Pods_Abstract_VK_MOS.framework */; };
@@ -46,6 +49,9 @@
 		7C0453F01E325A3600A5EE9F /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		7C0453F21E325BE200A5EE9F /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		7C0453F41E334FCD00A5EE9F /* AuthWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthWebViewController.swift; sourceTree = "<group>"; };
+		7CA3DE851E34F5C400D26CE2 /* ScreensSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensSwitcher.swift; sourceTree = "<group>"; };
+		7CA3DE8B1E34FE3400D26CE2 /* CustomLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomLaunchScreen.storyboard; sourceTree = "<group>"; };
+		7CA3DE8D1E35234E00D26CE2 /* CustomLaunchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLaunchScreen.swift; sourceTree = "<group>"; };
 		7CEDFC1B1E34E36700AA6C6A /* News.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		7CEDFC1D1E34E38400AA6C6A /* NewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
 		8B3CC4DC91F9DBFF7E7867D5 /* Pods_Abstract_VK_MOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Abstract_VK_MOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,8 +94,6 @@
 				7C0453C31E32438E00A5EE9F /* AppDelegate.swift */,
 				7C0453DB1E32454600A5EE9F /* Constants.swift */,
 				7C0453D91E3244BD00A5EE9F /* Storyboards */,
-				7C0453DD1E32468C00A5EE9F /* Database */,
-				7C0453DE1E32469800A5EE9F /* API */,
 				7C0453DA1E3244CA00A5EE9F /* Helpers */,
 				7C0453D51E32446B00A5EE9F /* Model */,
 				7C0453D61E32446F00A5EE9F /* View */,
@@ -101,6 +105,9 @@
 		7C0453D51E32446B00A5EE9F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7CA3DE841E34F5B000D26CE2 /* Classes */,
+				7C0453DD1E32468C00A5EE9F /* Database */,
+				7C0453DE1E32469800A5EE9F /* API */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -117,6 +124,7 @@
 			children = (
 				7C0453F61E334FD200A5EE9F /* Authorization */,
 				7CEDFC1F1E34E38800AA6C6A /* News */,
+				7CA3DE8D1E35234E00D26CE2 /* CustomLaunchScreen.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -138,6 +146,7 @@
 			children = (
 				7C0453F01E325A3600A5EE9F /* Login.storyboard */,
 				7CEDFC1B1E34E36700AA6C6A /* News.storyboard */,
+				7CA3DE8B1E34FE3400D26CE2 /* CustomLaunchScreen.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -185,6 +194,14 @@
 				7C0453F41E334FCD00A5EE9F /* AuthWebViewController.swift */,
 			);
 			name = Authorization;
+			sourceTree = "<group>";
+		};
+		7CA3DE841E34F5B000D26CE2 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7CA3DE851E34F5C400D26CE2 /* ScreensSwitcher.swift */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		7CEDFC1F1E34E38800AA6C6A /* News */ = {
@@ -278,6 +295,7 @@
 				7C0453CE1E32438E00A5EE9F /* LaunchScreen.storyboard in Resources */,
 				7C0453CB1E32438E00A5EE9F /* Assets.xcassets in Resources */,
 				7C0453F11E325A3600A5EE9F /* Login.storyboard in Resources */,
+				7CA3DE8C1E34FE3400D26CE2 /* CustomLaunchScreen.storyboard in Resources */,
 				7CEDFC1C1E34E36700AA6C6A /* News.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,12 +355,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CA3DE861E34F5C400D26CE2 /* ScreensSwitcher.swift in Sources */,
 				7CEDFC1E1E34E38400AA6C6A /* NewsController.swift in Sources */,
 				7C0453E91E32543D00A5EE9F /* VKErrorsDescription.swift in Sources */,
 				7C0453F51E334FCD00A5EE9F /* AuthWebViewController.swift in Sources */,
 				7C0453EF1E32562000A5EE9F /* Extensions.swift in Sources */,
 				7C0453C41E32438E00A5EE9F /* AppDelegate.swift in Sources */,
 				7C0453ED1E3255DE00A5EE9F /* Alerts.swift in Sources */,
+				7CA3DE8E1E35234E00D26CE2 /* CustomLaunchScreen.swift in Sources */,
 				7C0453EB1E32546A00A5EE9F /* VKBackendErrors.swift in Sources */,
 				7C0453E01E324CAB00A5EE9F /* AlamofireHelpers.swift in Sources */,
 				7C0453E71E3252A800A5EE9F /* Router.swift in Sources */,

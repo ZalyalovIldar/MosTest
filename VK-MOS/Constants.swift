@@ -14,7 +14,6 @@ let VKAuthURL:URL = URL(string:"https://oauth.vk.com/authorize?client_id=5834912
 /*--------------User Defaults keys-------------*/
 enum VKUserDefaultsKey {
     static let UserAccesToken = "UserAccesToken"
-    
 }
 
 /*----------Notifications---------*/
