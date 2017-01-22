@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="V7s-aP-zkN" customClass="TBMonitoringPACell" customModule="VK_MOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="355" height="450"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="355" height="450"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dto-up-W1k" userLabel="imagesView">
+                        <rect key="frame" x="0.0" y="0.0" width="355" height="236.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XY0-wK-8mk">
+                                <rect key="frame" x="140" y="81" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="MkY-wq-rWu"/>
+                                    <constraint firstAttribute="height" constant="75" id="UTB-bY-OGW"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GQr-Hq-0vL">
+                                <rect key="frame" x="0.0" y="0.0" width="355" height="236.5"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.098039215690000001" green="0.1058823529" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="GQr-Hq-0vL" firstAttribute="leading" secondItem="dto-up-W1k" secondAttribute="leading" id="3AS-bv-Ah9"/>
+                            <constraint firstItem="XY0-wK-8mk" firstAttribute="centerX" secondItem="dto-up-W1k" secondAttribute="centerX" id="Pzc-X2-7PB"/>
+                            <constraint firstItem="GQr-Hq-0vL" firstAttribute="top" secondItem="dto-up-W1k" secondAttribute="top" id="dEt-Yd-zDM"/>
+                            <constraint firstAttribute="trailing" secondItem="GQr-Hq-0vL" secondAttribute="trailing" id="e6p-jQ-LyB"/>
+                            <constraint firstAttribute="bottom" secondItem="GQr-Hq-0vL" secondAttribute="bottom" id="tjz-zY-hMj"/>
+                            <constraint firstItem="XY0-wK-8mk" firstAttribute="centerY" secondItem="dto-up-W1k" secondAttribute="centerY" id="yo1-kN-KZW"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.1176470588" green="0.12549019610000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="dto-up-W1k" firstAttribute="top" secondItem="V7s-aP-zkN" secondAttribute="top" id="DHA-d9-H14"/>
+                <constraint firstAttribute="trailing" secondItem="dto-up-W1k" secondAttribute="trailing" id="Mtp-fY-zm0"/>
+                <constraint firstItem="dto-up-W1k" firstAttribute="leading" secondItem="V7s-aP-zkN" secondAttribute="leading" id="R67-mp-LVt"/>
+            </constraints>
+            <size key="customSize" width="199" height="401"/>
+            <connections>
+                <outlet property="cameraImageView" destination="GQr-Hq-0vL" id="npF-iP-gcQ"/>
+            </connections>
+            <point key="canvasLocation" x="0.5" y="197"/>
+        </collectionViewCell>
+    </objects>
+</document>

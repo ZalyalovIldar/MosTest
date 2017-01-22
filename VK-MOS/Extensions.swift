@@ -33,3 +33,36 @@ extension UIAlertController{
         presentedController?.present(self, animated: true, completion: nil)
     }
 }
+
+extension UICollectionViewCell {
+    static func nib() -> UINib {
+        let nib = UINib(nibName: nibName(), bundle: nil)
+        return nib
+    }
+    
+    static func nibName() -> String {
+        return String.init(describing: self.self)
+    }
+    
+    static func cellIdentifier() -> String {
+        return String.init(describing: self.self)
+    }
+    
+}
+
+extension UITableViewCell {
+    static func nib() -> UINib {
+        let nib = UINib(nibName: nibName(), bundle: nil)
+        return nib
+    }
+    
+    static func nibName() -> String {
+        return String.init(describing: self.self)
+    }
+    
+    static func cellIdentifier() -> String {
+        return String.init(describing: self.self)
+    }
+    
+}
+
