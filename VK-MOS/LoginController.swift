@@ -37,7 +37,7 @@ class LoginController: UIViewController {
     }
     
     
-    //MARK: - Custom methods
+    //MARK: Custom methods
     func setUpMainAppereances(){
         self.loginButton.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
     }
