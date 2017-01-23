@@ -20,7 +20,7 @@ class Repost: Object {
 }
 
 extension Repost: Mappable{
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         self.count <- map["count"]
         self.userReposted <- map["user_reposted"]
     }

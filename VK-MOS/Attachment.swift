@@ -11,7 +11,7 @@ import ObjectMapper
 
 class Attachment: Object {
     dynamic var type: String = ""
-    dynamic var typeName: Any?
+//    dynamic var typeName: Object?
     
     required convenience init?(map: ObjectMapper.Map) {
         guard let _ = map.JSON["type"] as? String else {return nil}
@@ -20,8 +20,8 @@ class Attachment: Object {
 }
 
 extension Attachment: Mappable{
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         self.type <- map["type"]
-        self.typeName <- map[self.type]
+//        self.typeName <- map[self.type]
     }
 }

@@ -16,6 +16,12 @@ class NewsController: UIViewController {
     var activityIndicatorForCollectionView: UIActivityIndicatorView!
     var footerCollectionViewActivityIndicatorView: UIView!
     
+    var task: DataRequest? {
+        willSet {
+            self.task?.cancel()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,7 +33,17 @@ class NewsController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: Buttons action
+    @IBAction func exitPressed(_ sender: Any) {
+        SVProgressHUD.show()
+        MainUser.removeUser()
+        HTTPCookieStorage.removeCookies()
+        ScreensSwithcer.switchScreens()
+        SVProgressHUD.dismiss()
+    }
 
+    //MARK: Custom methods
+    
     /*
     // MARK: - Navigation
 

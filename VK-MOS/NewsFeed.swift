@@ -12,7 +12,7 @@ import ObjectMapper
 class NewsFeed: Object {
     dynamic var id: Int = 0
     dynamic var name: String = ""
-    dynamic var items: Array<Item> = []
+    var items = List<Item>()
     dynamic var newOffset: Int = 0
     dynamic var newFrom: Int = 0
     
@@ -28,7 +28,7 @@ class NewsFeed: Object {
 }
 
 extension NewsFeed: Mappable{
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         self.id <- map["id"]
         self.name <- map["name"]
         self.items <- map["items"]

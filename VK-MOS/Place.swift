@@ -19,14 +19,14 @@ class Place: Object {
     dynamic var address: String = ""
     
     required convenience init?(map: ObjectMapper.Map) {
-        guard let _ = map.JSON["place_id"] as? Int32 else {return nil}
+        guard let _ = map.JSON["placeId"] as? Int32 else {return nil}
         self.init()
     }
     
 }
 
 extension Place: Mappable{
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         self.placeId <- map["place_id"]
         self.title <- map["title"]
         self.type <- map["type"]

@@ -14,8 +14,8 @@ class Profile: Object {
     dynamic var uid: Int = 0
     dynamic var firstName: String = ""
     dynamic var lastName: String = ""
-    dynamic var photo: URL?
-    dynamic var photoMediumRec: URL?
+    dynamic var photo: String = ""
+    dynamic var photoMediumRec: String = ""
     dynamic var sex: Int = 0
     dynamic var isOnline: Bool = false
     dynamic var screenName: String = ""
@@ -32,7 +32,7 @@ class Profile: Object {
 }
 
 extension Profile: Mappable{
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         self.uid <- map["uid"]
         self.firstName <- map["first_name"]
         self.lastName <- map["last_name"]

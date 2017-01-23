@@ -16,9 +16,9 @@ class Group: Object {
     dynamic var isClosed: Bool = true //is_closed
     dynamic var type: String = "" //type
     dynamic var isAdmin: Bool = false //is_admin
-    dynamic var photo: URL? //photo
-    dynamic var photoMedium: URL? //photo_medium
-    dynamic var photoBig: URL? //photo_big
+    dynamic var photo: String = "" //photo
+    dynamic var photoMedium: String = ""//photo_medium
+    dynamic var photoBig: String = "" //photo_big
     
     override static func primaryKey() -> String? {
         return "gid"
@@ -31,7 +31,7 @@ class Group: Object {
 }
 
 extension Group: Mappable{
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         self.gid <- map["gid"]
         self.name <- map["name"]
         self.screenName <- map["screen_name"]

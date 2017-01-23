@@ -20,7 +20,7 @@ class Comment: Object {
 }
 
 extension Comment: Mappable{
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         self.count <- map["count"]
         self.canPost <- map["can_post"]
     }

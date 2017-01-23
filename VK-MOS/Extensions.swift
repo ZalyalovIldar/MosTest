@@ -63,6 +63,12 @@ extension UITableViewCell {
     static func cellIdentifier() -> String {
         return String.init(describing: self.self)
     }
-    
+}
+
+extension HTTPCookieStorage{
+    static func removeCookies(){
+        let storage = self.shared
+        storage.cookies?.forEach{storage.deleteCookie($0)}
+    }
 }
 

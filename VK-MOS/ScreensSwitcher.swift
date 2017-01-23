@@ -13,7 +13,7 @@ class ScreensSwithcer: NSObject {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
             let window = appDelegate.window else {return}
         
-        if UserDefaults.standard.object(forKey: VKUserDefaultsKey.UserAccesToken) != nil{
+        if BDRealm?.objects(MainUser.self).first?.token != nil{
             window.rootViewController = Storyboard.newsWall.firstController!
         }else {
             window.rootViewController = Storyboard.login.firstController!

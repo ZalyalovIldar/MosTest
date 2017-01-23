@@ -13,7 +13,7 @@ class Photo: Object {
     dynamic var pid: Int32 = 0
     dynamic var ownerId: Int32 = 0
     dynamic var aid: Int32 = 0
-    dynamic var srcBig: URL?
+    dynamic var srcBig: String = ""
     
     required convenience init?(map: ObjectMapper.Map) {
         guard let _ = map.JSON["pid"] as? String else {return nil}
@@ -22,7 +22,7 @@ class Photo: Object {
 }
 
 extension Photo: Mappable{
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         self.pid <- map["pid"]
         self.ownerId <- map["owner_id"]
         self.aid <- map["aid"]

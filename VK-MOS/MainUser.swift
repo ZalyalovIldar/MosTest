@@ -13,18 +13,23 @@ class MainUser: Object {
     dynamic var id: Int = 0
     dynamic var firstName: String = ""
     dynamic var lastName: String = ""
-    
-    var token: String?{
-        get{
-            return UserDefaults.standard.object(forKey: VKUserDefaultsKey.UserAccesToken) as! String?
-        }
-        set(newToken){
-            UserDefaults.standard.set(newToken, forKey: VKUserDefaultsKey.UserAccesToken)
-        }
-    }
+    dynamic var token: String = ""
     
     var fullname: String {
         return firstName + " " + lastName
+    }
+    
+    class func currentUser() -> MainUser?{
+        guard let realmUser = BDRealm?.objects(MainUser.self).first else {return nil}
+        return realmUser
+        
+    }
+    
+    class func removeUser(){
+        guard let realm = BDRealm else{return}
+        try! realm.write({
+            realm.delete(realm.objects(MainUser.self))
+        })
     }
     
     override static func primaryKey() -> String? {
@@ -32,7 +37,7 @@ class MainUser: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["token", "fullname"]
+        return ["fullname"]
     }
     
     required convenience init?(map: ObjectMapper.Map) {
@@ -43,7 +48,7 @@ class MainUser: Object {
 
 extension MainUser: Mappable{
     
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         self.id <- map["id"]
         self.firstName <- map["first_name"]
         self.lastName <- map["last_name"]

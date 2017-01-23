@@ -23,7 +23,7 @@ class Like: Object {
 }
 
 extension Like: Mappable{
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         self.count <- map["count"]
         self.userLikes <- map["user_likes"]
         self.canLike <- map["can_like"]

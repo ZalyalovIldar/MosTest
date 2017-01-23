@@ -58,7 +58,13 @@
                             <constraint firstItem="m7Y-Cx-cFl" firstAttribute="leading" secondItem="aog-Ha-90q" secondAttribute="leading" id="u2k-lZ-O0a"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="News" id="p2i-Ws-LE7"/>
+                    <navigationItem key="navigationItem" title="News" id="p2i-Ws-LE7">
+                        <barButtonItem key="leftBarButtonItem" title="Exit" id="GS1-ox-16Z">
+                            <connections>
+                                <action selector="exitPressed:" destination="euE-jd-cBW" id="XKJ-3q-HdQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="m7Y-Cx-cFl" id="wH7-Zn-ek0"/>
                     </connections>

@@ -21,22 +21,22 @@ class Item: Object {
     dynamic var comments: Comment?
     dynamic var likes: Like?
     dynamic var reposts: Repost?
-    dynamic var attachments: Array<Attachment> = []
+    var attachments = List<Attachment>()
     dynamic var geo: Geo?
     
     
     override static func primaryKey() -> String? {
-        return "post_id"
+        return "postId"
     }
     
     required convenience init?(map: ObjectMapper.Map) {
-        guard let _ = map.JSON["post_id"] as? Int else {return nil}
+        guard let _ = map.JSON["postId"] as? Int else {return nil}
         self.init()
     }
 }
 
 extension Item: Mappable{
-    func mapping(map: Map) {
+    func mapping(map: ObjectMapper.Map) {
         self.type <- map["type"]
         self.sourceId <- map["source_id"]
         self.postId <- map["post_id"]
