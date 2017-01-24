@@ -11,35 +11,36 @@ import ObjectMapper
 
 class Profile: Object {
 
-    dynamic var uid: Int = 0
+    dynamic var id: Int = 0
     dynamic var firstName: String = ""
     dynamic var lastName: String = ""
-    dynamic var photo: String = ""
-    dynamic var photoMediumRec: String = ""
-    dynamic var sex: Int = 0
-    dynamic var isOnline: Bool = false
+    dynamic var photoSmall: String = ""
+    dynamic var photoOriginal: String = ""
     dynamic var screenName: String = ""
     
     override static func primaryKey() -> String? {
-        return "uid"
+        return "id"
     }
     
     required convenience init?(map: ObjectMapper.Map) {
-        guard let _ = map.JSON["uid"] as? Int else {return nil}
+        guard let _ = map.JSON["id"] as? Int else {return nil}
         self.init()
+    }
+    
+    var phtoUrl: URL?{
+        guard self.photoSmall != "" else {return nil}
+        return self.photoSmall.fs_toURL()!
     }
 
 }
 
 extension Profile: Mappable{
     func mapping(map: ObjectMapper.Map) {
-        self.uid <- map["uid"]
-        self.firstName <- map["first_name"]
-        self.lastName <- map["last_name"]
-        self.screenName <- map["screen_name"]
-        self.isOnline <- map["is_online"]
-        self.sex <- map["sex"]
-        self.photo <- map["photo"]
-        self.photoMediumRec <- map["photo_medium_rec"]
+        self.id             <- map["id"]
+        self.firstName      <- map["first_name"]
+        self.lastName       <- map["last_name"]
+        self.screenName     <- map["screen_name"]
+        self.photoSmall         <- map["photo_50"]
+        self.photoOriginal  <- map["photo_medium_rec"]
     }
 }

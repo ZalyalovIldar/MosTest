@@ -21,6 +21,7 @@
 		7C0453F11E325A3600A5EE9F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0453F01E325A3600A5EE9F /* Login.storyboard */; };
 		7C0453F31E325BE200A5EE9F /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453F21E325BE200A5EE9F /* LoginController.swift */; };
 		7C0453F51E334FCD00A5EE9F /* AuthWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453F41E334FCD00A5EE9F /* AuthWebViewController.swift */; };
+		7C3E62D91E3780AB004F50F9 /* RealmSwift+ObjectMapperOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3E62D81E3780AB004F50F9 /* RealmSwift+ObjectMapperOperator.swift */; };
 		7CA3DE861E34F5C400D26CE2 /* ScreensSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DE851E34F5C400D26CE2 /* ScreensSwitcher.swift */; };
 		7CA3DE8C1E34FE3400D26CE2 /* CustomLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA3DE8B1E34FE3400D26CE2 /* CustomLaunchScreen.storyboard */; };
 		7CA3DE8E1E35234E00D26CE2 /* CustomLaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DE8D1E35234E00D26CE2 /* CustomLaunchScreen.swift */; };
@@ -64,6 +65,7 @@
 		7C0453F01E325A3600A5EE9F /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		7C0453F21E325BE200A5EE9F /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		7C0453F41E334FCD00A5EE9F /* AuthWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthWebViewController.swift; sourceTree = "<group>"; };
+		7C3E62D81E3780AB004F50F9 /* RealmSwift+ObjectMapperOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealmSwift+ObjectMapperOperator.swift"; sourceTree = "<group>"; };
 		7CA3DE851E34F5C400D26CE2 /* ScreensSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensSwitcher.swift; sourceTree = "<group>"; };
 		7CA3DE8B1E34FE3400D26CE2 /* CustomLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomLaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CA3DE8D1E35234E00D26CE2 /* CustomLaunchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLaunchScreen.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			children = (
 				7C0453EC1E3255DE00A5EE9F /* Alerts.swift */,
 				7C0453EE1E32562000A5EE9F /* Extensions.swift */,
+				7C3E62D81E3780AB004F50F9 /* RealmSwift+ObjectMapperOperator.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				7CA3DE9D1E352EF000D26CE2 /* Like.swift in Sources */,
 				7CA3DEA71E353B7300D26CE2 /* Place.swift in Sources */,
 				7C0453E71E3252A800A5EE9F /* Router.swift in Sources */,
+				7C3E62D91E3780AB004F50F9 /* RealmSwift+ObjectMapperOperator.swift in Sources */,
 				7C0453DC1E32454600A5EE9F /* Constants.swift in Sources */,
 				7CA3DE9B1E352E8500D26CE2 /* Comment.swift in Sources */,
 				7C0453E51E32518600A5EE9F /* VKErrors.swift in Sources */,

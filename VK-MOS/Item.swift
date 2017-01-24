@@ -12,43 +12,42 @@ import ObjectMapper
 class Item: Object {
     dynamic var type: String = ""
     dynamic var sourceId: Int = 0
-    dynamic var date: Date?
+    dynamic var date: NSNumber  = 0
     dynamic var postId: Int = 0
-    dynamic var copyOwnerId: Int = 0
-    dynamic var copyPostId: Int = 0
-    dynamic var copyPostDate: Date?
     dynamic var text: String = ""
     dynamic var comments: Comment?
     dynamic var likes: Like?
     dynamic var reposts: Repost?
-    var attachments = List<Attachment>()
+    let attachments = List<Attachment>()
     dynamic var geo: Geo?
     
     
     override static func primaryKey() -> String? {
-        return "postId"
+        return "sourceId"
     }
     
     required convenience init?(map: ObjectMapper.Map) {
-        guard let _ = map.JSON["postId"] as? Int else {return nil}
+        guard let _ = map.JSON["source_id"] as? Int else {return nil}
         self.init()
+    }
+    
+    var postedDate: String{
+        let date = Date(timeIntervalSince1970: self.date.doubleValue)
+        return date.getElapsedInterval()
     }
 }
 
 extension Item: Mappable{
     func mapping(map: ObjectMapper.Map) {
-        self.type <- map["type"]
-        self.sourceId <- map["source_id"]
-        self.postId <- map["post_id"]
-        self.copyOwnerId <- map["copy_owner_id"]
-        self.copyPostId <- map["copy_post_id"]
-        self.text <- map["text"]
-        self.comments <- map["comments"]
-        self.likes <- map["likes"]
-        self.reposts <- map["reposts"]
+        self.type        <- map["type"]
+        self.sourceId    <- map["source_id"]
+        self.postId      <- map["post_id"]
+        self.text        <- map["text"]
+        self.comments    <- map["comments"]
+        self.likes       <- map["likes"]
+        self.reposts     <- map["reposts"]
         self.attachments <- map["attachments"]
-        self.geo <- map["geo"]
-        self.date <- map["date"]
-        self.copyPostDate <- map["copy_post_date"]
+        self.geo         <- map["geo"]
+        self.date        <- map["date"]
     }
 }

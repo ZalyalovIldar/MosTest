@@ -11,10 +11,14 @@ import UIKit
 class NewsController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var newsArray: [NewsFeed] = []
+    var newsFeedModel: NewsFeed?
+    var itemsArray: [Item] = []
+    var groupsArray: [Group] = []
+    var profilesArray: [Profile] = []
     var isNewDataLoading = false
     var activityIndicatorForCollectionView: UIActivityIndicatorView!
     var footerCollectionViewActivityIndicatorView: UIView!
+    var refreshControl: UIRefreshControl!
     
     var task: DataRequest? {
         willSet {
@@ -25,7 +29,17 @@ class NewsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.collectionView.contentInset = UIEdgeInsetsMake(13, 0, 0, 0)
+        self.collectionView.register(NewsCell.nib(), forCellWithReuseIdentifier: NewsCell.cellIdentifier())
+        
+        self.refreshControl = UIRefreshControl() 
+//        self.collectionView.addPullToRefreshTo(scrollView: self.collectionView, triggeringMethodName: "endRefreshing")
+        let refresher = UIRefreshControl()
+        self.collectionView!.alwaysBounceVertical = true
+        refresher.tintColor = UIColor.white
+        refresher.addTarget(self, action: #selector(loadNews), for: .valueChanged)
+        self.collectionView.addSubview(refresher)
+        
+        self.loadNews()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,6 +58,36 @@ class NewsController: UIViewController {
 
     //MARK: Custom methods
     
+    func loadNews(){
+        guard let accessToken = MainUser.currentUser()?.token else {return}
+        SVProgressHUD.show()
+        self.task = Router.User.getMainUserNews(userToken:accessToken, start_from: "").request().responseObject({ (response: DataResponse<RTUserNewsFeedResponse>) in
+            switch response.result{
+            case .success(let value):
+                guard let newsFeed = value.newsFeed  else {return}
+                self.newsFeedModel = newsFeed
+                Logger.debug("\nSussess response: \(newsFeed)")
+                self.itemsArray    = Array(newsFeed.items) 
+                self.groupsArray   = Array(newsFeed.groups)
+                self.profilesArray = Array(newsFeed.profiles) 
+                
+                DispatchQueue.main.async(execute: {
+                    self.refreshControl.endRefreshing()
+                    SVProgressHUD.dismiss()
+                })
+            case .failure(let error):
+                Logger.error("\nError when getting NewsWall: \(error)")
+                DispatchQueue.main.async(execute: {
+                    self.refreshControl.endRefreshing()
+                    SVProgressHUD.dismiss()
+                })
+            }
+        })
+    }
+    
+    func endRefreshing(){
+        self.loadNews()
+    }
     /*
     // MARK: - Navigation
 
@@ -58,7 +102,7 @@ class NewsController: UIViewController {
 
 extension NewsController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.newsArray.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

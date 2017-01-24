@@ -10,36 +10,38 @@ import UIKit
 import ObjectMapper
 
 class Group: Object {
-    dynamic var gid: Int = 0 //gid
+    dynamic var id: Int = 0 //gid
     dynamic var name: String = "" //name
     dynamic var screenName: String = "" //screen_name
     dynamic var isClosed: Bool = true //is_closed
     dynamic var type: String = "" //type
     dynamic var isAdmin: Bool = false //is_admin
-    dynamic var photo: String = "" //photo
-    dynamic var photoMedium: String = ""//photo_medium
-    dynamic var photoBig: String = "" //photo_big
+    dynamic var photoSmall: String = "" //photo 50х50
     
     override static func primaryKey() -> String? {
-        return "gid"
+        return "id"
     }
     
     required convenience init?(map: ObjectMapper.Map) {
-        guard let _ = map.JSON["gid"] as? Int else {return nil}
+        guard let _ = map.JSON["id"] as? Int else {return nil}
         self.init()
     }
+    
+    var phtoUrl: URL?{
+        guard self.photoSmall != "" else {return nil}
+        return self.photoSmall.fs_toURL()
+    }
+    
 }
 
 extension Group: Mappable{
     func mapping(map: ObjectMapper.Map) {
-        self.gid <- map["gid"]
+        self.id <- map["id"]
         self.name <- map["name"]
         self.screenName <- map["screen_name"]
         self.isClosed <- map["is_closed"]
         self.type <- map["type"]
         self.isAdmin <- map["is_admin"]
-        self.photo <- map["photo"]
-        self.photoMedium <- map["photo_medium"]
-        self.photoBig <- map["photo_big"]
+        self.photoSmall <- map["photo_50"]
     }
 }

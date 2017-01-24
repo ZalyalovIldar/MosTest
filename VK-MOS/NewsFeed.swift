@@ -9,19 +9,17 @@
 import Foundation
 import ObjectMapper
 
+
 class NewsFeed: Object {
-    dynamic var id: Int = 0
-    dynamic var name: String = ""
-    var items = List<Item>()
-    dynamic var newOffset: Int = 0
-    dynamic var newFrom: Int = 0
+    dynamic var nextFrom: String = ""
     
-    override static func primaryKey() -> String? {
-        return "id"
-    }
+    let items    = List<Item>()
+    let groups   = List<Group>()
+    let profiles = List<Profile>()
+    
     
     required convenience init?(map: ObjectMapper.Map) {
-        guard let _ = map.JSON["id"] as? Int else {return nil}
+        guard let _ = map.JSON["items"] as? Array<Any> else {return nil}
         self.init()
     }
     
@@ -29,10 +27,10 @@ class NewsFeed: Object {
 
 extension NewsFeed: Mappable{
     func mapping(map: ObjectMapper.Map) {
-        self.id <- map["id"]
-        self.name <- map["name"]
-        self.items <- map["items"]
-        self.newOffset <- map["new_offset"]
-        self.newFrom <- map ["new_from"]
+        self.nextFrom   <- map["next_from"]
+        self.groups     <- map["groups"]
+        self.profiles   <- map["profiles"]
+        self.items      <- map["items"]
     }
 }
+

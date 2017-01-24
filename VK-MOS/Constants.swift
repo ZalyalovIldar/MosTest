@@ -11,7 +11,7 @@ import UIKit
 
 var Logger: XCGLogger {return XCGLogger.default}
 var BDRealm: Realm? {return try? Realm()}
-let VKAuthURL:URL = "https://oauth.vk.com/authorize?client_id=5834912&scope=friends,offline&DISPLAY=touch&REDIRECT_URI=http://oauth.vk.com/blank.html&response_type=token".fs_toURL()!
+let VKAuthURL:URL = "https://oauth.vk.com/authorize?client_id=5834912&scope=friends,offline,wall&DISPLAY=touch&REDIRECT_URI=http://oauth.vk.com/blank.html&response_type=token".fs_toURL()!
 
 
 /*--------------User Defaults keys-------------*/
@@ -28,7 +28,7 @@ enum VKNotification {
 enum AppColors
 {
     static let MainColor = UIColor(fs_hexString: "224d71")
-    static let GoldColor = UIColor(fs_hexString: "ebc44b")
+    static let BlackGrayColor = UIColor(fs_hexString: "2D343C")
 }
 
 /*----------Helpers----------*/
