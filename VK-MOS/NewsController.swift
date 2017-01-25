@@ -9,7 +9,7 @@
 import UIKit
 
 class NewsController: UIViewController {
-
+    
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -55,7 +55,7 @@ class NewsController: UIViewController {
         ScreensSwithcer.switchScreens()
         SVProgressHUD.dismiss()
     }
-
+    
     //MARK: Custom methods
     
     func setUpMainAppereance(){
@@ -91,11 +91,11 @@ class NewsController: UIViewController {
             
             return
         }
-        self.task = Router.User.getMainUserNews(userToken:accessToken, start_from: "").request().responseObject({ (response: DataResponse<RTUserNewsFeedResponse>) in
+        self.task = Router.User.getMainUserNews(userToken:accessToken, start_from: "").request().responseObject({[weak self] (response: DataResponse<RTUserNewsFeedResponse>) in
             switch response.result{
             case .success(let value):
                 guard let newsFeed = value.newsFeed  else {return}
-                self.newsFeedModel = newsFeed
+                self?.newsFeedModel = newsFeed
                 Logger.debug("\nSussess response: \(newsFeed)")
                 
                 do {
@@ -109,19 +109,47 @@ class NewsController: UIViewController {
                     Logger.error("\nSaving NewsFeed info Error: \(error)")
                 }
                 
-                self.itemsArray    = Array(newsFeed.items)
-                self.groupsArray   = Array(newsFeed.groups)
-                self.profilesArray = Array(newsFeed.profiles)
+                self?.itemsArray    = Array(newsFeed.items)
+                self?.groupsArray   = Array(newsFeed.groups)
+                self?.profilesArray = Array(newsFeed.profiles)
                 
                 DispatchQueue.main.async(execute: {
-                    self.refreshControl.endRefreshing()
+                    self?.refreshControl.endRefreshing()
                     SVProgressHUD.dismiss()
-                    self.tableView.reloadData()
+                    self?.tableView.reloadData()
                 })
             case .failure(let error):
                 Logger.error("\nError when getting NewsWall: \(error)")
                 DispatchQueue.main.async(execute: {
-                    self.refreshControl.endRefreshing()
+                    self?.refreshControl.endRefreshing()
+                    SVProgressHUD.dismiss()
+                })
+            }
+        })
+    }
+    
+    func loadNextNews(from: String){
+        guard let accessToken = MainUser.currentUser()?.token else {return}
+        self.task = Router.User.getMainUserNews(userToken: accessToken, start_from: from).request().responseObject({[weak self] (response:DataResponse<RTUserNewsFeedResponse>) in
+            switch response.result{
+            case .success(let value):
+                guard let newsFeed = value.newsFeed  else {return}
+                self?.newsFeedModel = newsFeed
+                self?.isNewDataLoading = false
+                Logger.debug("\nSussess response of next scope News: \(newsFeed)")
+                
+                self?.itemsArray.append(contentsOf: Array(newsFeed.items))
+                self?.groupsArray.append(contentsOf: Array(newsFeed.groups))
+                self?.profilesArray.append(contentsOf: Array(newsFeed.profiles))
+                
+                DispatchQueue.main.async(execute: {
+                    self?.activityIndicatorForCollectionView.stopAnimating()
+                    self?.tableView.reloadData()
+                })
+            case .failure(let error):
+                Logger.error("\nError when getting next scope News: \(error)")
+                DispatchQueue.main.async(execute: {
+                    self?.activityIndicatorForCollectionView.stopAnimating()
                     SVProgressHUD.dismiss()
                 })
             }
@@ -129,23 +157,23 @@ class NewsController: UIViewController {
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension NewsController: UITableViewDataSource, UITableViewDelegate{
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.itemsArray.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var group: Group? = nil
         var profile: Profile? = nil
@@ -153,9 +181,9 @@ extension NewsController: UITableViewDataSource, UITableViewDelegate{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.cellIdentifier(), for: indexPath) as! NewsCell
         
-            item = self.itemsArray[indexPath.row]
-            group = self.groupsArray.count > 0 ? self.groupsArray.filter{$0.id == -item.sourceId}.first : nil
-            profile = self.profilesArray.count > 0 ? self.profilesArray.filter{$0.id == item.sourceId}.first : nil
+        item = self.itemsArray[indexPath.row]
+        group = self.groupsArray.count > 0 ? self.groupsArray.filter{$0.id == -item.sourceId}.first : nil
+        profile = self.profilesArray.count > 0 ? self.profilesArray.filter{$0.id == item.sourceId}.first : nil
         
         if group != nil{
             cell.prepareCellWith(item: item, group: group!)
@@ -173,11 +201,11 @@ extension NewsController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return self.initCollectionViewFooter()
+        return self.initTableViewFooter()
     }
     
-    func initCollectionViewFooter() ->UIView {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.fs_width, height: 55))
+    func initTableViewFooter() ->UIView {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.fs_width, height: 65))
         view.backgroundColor = UIColor.clear
         self.activityIndicatorForCollectionView = UIActivityIndicatorView()
         self.activityIndicatorForCollectionView?.color = #colorLiteral(red: 1, green: 0.758528769, blue: 0, alpha: 1)
@@ -190,35 +218,25 @@ extension NewsController: UITableViewDataSource, UITableViewDelegate{
     }
 }
 
+extension NewsController{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == self.tableView{
+            if ((scrollView.contentOffset.y + scrollView.frame.size.height) + 150 >= scrollView.contentSize.height)
+            {
+                if !self.isNewDataLoading{
+                    guard Router.networkReachabilityManager?.isReachable == true else {return}
+                    
+                    guard self.itemsArray.count > 0, let newsFeed = self.newsFeedModel
+                        else {return}
+                    
+                    self.activityIndicatorForCollectionView?.startAnimating()
+                    
+                    self.isNewDataLoading = true
+                    self.loadNextNews(from: newsFeed.nextFrom)
+                }
+            }
+        }
+    }
+    
+}
 
-
-////    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-////        if scrollView == self.collectionView {
-////            if ((scrollView.contentOffset.y + scrollView.frame.size.height) + 50 >= scrollView.contentSize.height)
-////            {
-////                if !self.isNewDataLoading{
-////                    guard FSInternetConnectionHelper.checkConnection(showErrorOnView: self.footerCollectionViewActivityIndicatorView) else {return}
-////                    let collection = self.camerasCollection
-////                    guard let lCamerasCollection = collection else {return}
-////                    
-////                    self.activityIndicatorForCollectionView?.startAnimating()
-////                    
-////                    self.isNewDataLoading = true
-////                    TBCamera.loadNextCamerasAfter(cameras: lCamerasCollection, result: { [weak self] (collection) in
-////                        
-////                        self?.activityIndicatorForCollectionView?.stopAnimating()
-////                        
-////                        self?.isNewDataLoading = false
-////                        guard let camerasResource = collection?.resources as? [TBCamera] else {return}
-////                        
-////                        self?.camerasArray = camerasResource
-////                        
-////                        self?.camerasCollection = collection
-////                        self?.collectionView.reloadData()
-////                    })
-////                }
-////            }
-////        }
-////        
-////    }
-//}
