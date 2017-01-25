@@ -47,6 +47,12 @@ extension DataRequest{
             if let nsError = error as? NSError, nsError.code == -999 {
                 return .failure(VKError(request: RequestError.canceled))
             }
+            
+            if let nsError = error as? NSError, nsError.code == -1009 {
+                ShowErrorAlert(BackendError.internetIsOffline.humanDescription.title, message: BackendError.internetIsOffline.humanDescription.text)
+                return .failure(VKError(backend: BackendError.internetIsOffline))
+            }
+            
             guard let lData = data, let json = try JSONSerialization.jsonObject(with: lData as Data, options: []) as? [String : AnyObject] else {
                 return .failure(VKError(serialize: .wrongType))
             }

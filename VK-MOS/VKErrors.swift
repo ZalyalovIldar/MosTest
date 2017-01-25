@@ -68,7 +68,7 @@ enum SerializationError {
 
 enum BackendError {
     case notAuthorized
-    
+    case internetIsOffline
     var error: VKError {return VKError(backend: self)}
 }
 
