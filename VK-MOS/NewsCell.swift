@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol VKItemTableViewCellDelegate {
+    func didTapLikeFor(item:Item, withButton: UIButton)
+}
+
 class NewsCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var postNameLabel: UILabel!
@@ -19,7 +23,11 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var postCommentsLabel: UILabel!
     @IBOutlet weak var postRepostsLabel: UILabel!
     
+    @IBOutlet weak var postLikeButton: UIButton!
     @IBOutlet weak var lineTopConstraint: NSLayoutConstraint!
+    
+    var currentItem: Item?
+    var delegate: VKItemTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,7 +47,7 @@ class NewsCell: UITableViewCell {
         self.postCommentsLabel.text = nil
     }
     
-    
+    //MARK: Cell Preparing methods
     func prepareCellWith(item:Item, group: Group){
         self.postNameLabel.text = group.name
 
@@ -58,10 +66,12 @@ class NewsCell: UITableViewCell {
         self.setPost(item: item)
     }
     
+    //MARK: Helper methods
     func setPost(item: Item){
+        self.currentItem = item
         self.postDateLabel.text = item.postedDate
         self.postTextLabel.text = item.text
-    
+        self.postLikeButton.isSelected = (item.likes?.userLikes)!
         guard let likeCount = item.likes?.count, let comCount = item.comments?.count,
             let repCount = item.reposts?.count else {return}
         self.postLikesLabel.text    = String(describing: likeCount)
@@ -84,5 +94,11 @@ class NewsCell: UITableViewCell {
         
     }
     
+    //MARK: Buttons action
+    
+    @IBAction func likeButtonPressed(_ sender: UIButton) {
+        guard let lItem = self.currentItem else {return}
+        self.delegate?.didTapLikeFor(item: lItem, withButton: sender)
+    }
     
 }

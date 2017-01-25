@@ -180,6 +180,7 @@ extension NewsController: UITableViewDataSource, UITableViewDelegate{
         var item: Item! = nil
         
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.cellIdentifier(), for: indexPath) as! NewsCell
+        cell.delegate = self
         
         item = self.itemsArray[indexPath.row]
         group = self.groupsArray.count > 0 ? self.groupsArray.filter{$0.id == -item.sourceId}.first : nil
@@ -218,6 +219,29 @@ extension NewsController: UITableViewDataSource, UITableViewDelegate{
     }
 }
 
+extension NewsController: VKItemTableViewCellDelegate{
+    func didTapLikeFor(item: Item, withButton: UIButton){
+        guard let user = MainUser.currentUser() else {return}
+        
+//        let LPostId = item.sourceId < 0 ? item.sourceId * -1 : item.sourceId
+        self.task = Router.User.addLikeToItem(withId: item.postId, type: item.type, userToken: user.token, ownerId:item.sourceId).request().responseObject({[weak self] (response:DataResponse<RTEmptyResponse>) in
+            
+            switch response.result{
+            case .success(let value):
+                guard let LResponse = value.response?.dictionary  else {return}
+                
+                Logger.debug("\nPost liked successfully: \(LResponse)")
+                
+                DispatchQueue.main.async(execute: {
+                      withButton.isSelected = true
+//                    self?.tableView.reloadData()
+                })
+            case .failure(let error):
+                Logger.error("\nError when getting next scope News: \(error)")
+            }
+        })
+    }
+}
 extension NewsController{
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.tableView{

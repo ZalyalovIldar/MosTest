@@ -86,7 +86,7 @@ extension HTTPMethod {
     var encoding: ParameterEncoding {
         switch self {
         case .get                   : return URLEncoding.default
-        case .post, .put, .patch    : return JSONEncoding.default
+        case .post, .put, .patch    : return URLEncoding.default
         default                     : return URLEncoding.default
         }
     }
