@@ -12,7 +12,7 @@
         <!--News-->
         <scene sceneID="mvT-Bn-Sqt">
             <objects>
-                <viewController id="euE-jd-cBW" customClass="NewsController" customModule="VK_MOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="euE-jd-cBW" customClass="NewsController" customModule="VK_MOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Phi-QL-bcK"/>
                         <viewControllerLayoutGuide type="bottom" id="ncQ-Oq-84m"/>
@@ -20,9 +20,45 @@
                     <view key="view" contentMode="scaleToFill" id="aog-Ha-90q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="7uG-Bb-Cqj">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KTI-rk-ry8">
+                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KTI-rk-ry8" id="Den-Zm-EKm">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="euE-jd-cBW" id="3fn-if-3oa"/>
+                                    <outlet property="delegate" destination="euE-jd-cBW" id="tQI-l6-XQU"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1764705882352941" green="0.20392156862745098" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="7uG-Bb-Cqj" secondAttribute="trailing" id="Sxi-UH-bUu"/>
+                            <constraint firstItem="ncQ-Oq-84m" firstAttribute="top" secondItem="7uG-Bb-Cqj" secondAttribute="bottom" id="ehY-Se-t82"/>
+                            <constraint firstItem="7uG-Bb-Cqj" firstAttribute="leading" secondItem="aog-Ha-90q" secondAttribute="leading" id="nUF-SR-tvq"/>
+                            <constraint firstItem="7uG-Bb-Cqj" firstAttribute="top" secondItem="Phi-QL-bcK" secondAttribute="bottom" id="nyB-WN-oZK"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="News" id="p2i-Ws-LE7"/>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <navigationItem key="navigationItem" title="News" id="p2i-Ws-LE7">
+                        <barButtonItem key="leftBarButtonItem" title="Exit" id="GS1-ox-16Z">
+                            <connections>
+                                <action selector="exitPressed:" destination="euE-jd-cBW" id="XKJ-3q-HdQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="7uG-Bb-Cqj" id="XpH-wr-PTU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9e-ew-F5J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

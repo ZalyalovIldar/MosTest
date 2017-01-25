@@ -9,8 +9,7 @@
 import Foundation
 
 enum Router{
-    static let BaseURL = ""
-    static var OAuthToken: String?
+    static let BaseURL = "https://api.vk.com/method"
     
     //MARK: -
     static let manager: SessionManager = {

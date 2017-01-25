@@ -21,9 +21,25 @@
 		7C0453F11E325A3600A5EE9F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0453F01E325A3600A5EE9F /* Login.storyboard */; };
 		7C0453F31E325BE200A5EE9F /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453F21E325BE200A5EE9F /* LoginController.swift */; };
 		7C0453F51E334FCD00A5EE9F /* AuthWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0453F41E334FCD00A5EE9F /* AuthWebViewController.swift */; };
+		7C3E62D91E3780AB004F50F9 /* RealmSwift+ObjectMapperOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3E62D81E3780AB004F50F9 /* RealmSwift+ObjectMapperOperator.swift */; };
 		7CA3DE861E34F5C400D26CE2 /* ScreensSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DE851E34F5C400D26CE2 /* ScreensSwitcher.swift */; };
 		7CA3DE8C1E34FE3400D26CE2 /* CustomLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA3DE8B1E34FE3400D26CE2 /* CustomLaunchScreen.storyboard */; };
 		7CA3DE8E1E35234E00D26CE2 /* CustomLaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DE8D1E35234E00D26CE2 /* CustomLaunchScreen.swift */; };
+		7CA3DE921E3529E900D26CE2 /* NewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DE911E3529E900D26CE2 /* NewsFeed.swift */; };
+		7CA3DE941E352B9B00D26CE2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DE931E352B9B00D26CE2 /* Item.swift */; };
+		7CA3DE961E352BC900D26CE2 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DE951E352BC900D26CE2 /* Group.swift */; };
+		7CA3DE981E352C4700D26CE2 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DE971E352C4700D26CE2 /* Profile.swift */; };
+		7CA3DE9B1E352E8500D26CE2 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DE9A1E352E8500D26CE2 /* Comment.swift */; };
+		7CA3DE9D1E352EF000D26CE2 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DE9C1E352EF000D26CE2 /* Like.swift */; };
+		7CA3DE9F1E352F2100D26CE2 /* Repost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DE9E1E352F2100D26CE2 /* Repost.swift */; };
+		7CA3DEA11E352F5900D26CE2 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DEA01E352F5900D26CE2 /* Attachment.swift */; };
+		7CA3DEA31E352F8500D26CE2 /* Geo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DEA21E352F8500D26CE2 /* Geo.swift */; };
+		7CA3DEA51E352FE100D26CE2 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DEA41E352FE100D26CE2 /* Photo.swift */; };
+		7CA3DEA71E353B7300D26CE2 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DEA61E353B7300D26CE2 /* Place.swift */; };
+		7CA3DEA91E3540C700D26CE2 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DEA81E3540C700D26CE2 /* NewsCell.swift */; };
+		7CA3DEAB1E3540D500D26CE2 /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CA3DEAA1E3540D500D26CE2 /* NewsCell.xib */; };
+		7CA3DEAE1E35EE4100D26CE2 /* MainUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DEAD1E35EE4100D26CE2 /* MainUser.swift */; };
+		7CA3DEB01E35F99A00D26CE2 /* RTMainUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA3DEAF1E35F99A00D26CE2 /* RTMainUser.swift */; };
 		7CEDFC1C1E34E36700AA6C6A /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CEDFC1B1E34E36700AA6C6A /* News.storyboard */; };
 		7CEDFC1E1E34E38400AA6C6A /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEDFC1D1E34E38400AA6C6A /* NewsController.swift */; };
 		E6FA11379E50BD6077B46A7A /* Pods_Abstract_VK_MOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3CC4DC91F9DBFF7E7867D5 /* Pods_Abstract_VK_MOS.framework */; };
@@ -49,9 +65,25 @@
 		7C0453F01E325A3600A5EE9F /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		7C0453F21E325BE200A5EE9F /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		7C0453F41E334FCD00A5EE9F /* AuthWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthWebViewController.swift; sourceTree = "<group>"; };
+		7C3E62D81E3780AB004F50F9 /* RealmSwift+ObjectMapperOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealmSwift+ObjectMapperOperator.swift"; sourceTree = "<group>"; };
 		7CA3DE851E34F5C400D26CE2 /* ScreensSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensSwitcher.swift; sourceTree = "<group>"; };
 		7CA3DE8B1E34FE3400D26CE2 /* CustomLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomLaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CA3DE8D1E35234E00D26CE2 /* CustomLaunchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLaunchScreen.swift; sourceTree = "<group>"; };
+		7CA3DE911E3529E900D26CE2 /* NewsFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeed.swift; sourceTree = "<group>"; };
+		7CA3DE931E352B9B00D26CE2 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		7CA3DE951E352BC900D26CE2 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		7CA3DE971E352C4700D26CE2 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		7CA3DE9A1E352E8500D26CE2 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		7CA3DE9C1E352EF000D26CE2 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
+		7CA3DE9E1E352F2100D26CE2 /* Repost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repost.swift; sourceTree = "<group>"; };
+		7CA3DEA01E352F5900D26CE2 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		7CA3DEA21E352F8500D26CE2 /* Geo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geo.swift; sourceTree = "<group>"; };
+		7CA3DEA41E352FE100D26CE2 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		7CA3DEA61E353B7300D26CE2 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		7CA3DEA81E3540C700D26CE2 /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		7CA3DEAA1E3540D500D26CE2 /* NewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
+		7CA3DEAD1E35EE4100D26CE2 /* MainUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUser.swift; sourceTree = "<group>"; };
+		7CA3DEAF1E35F99A00D26CE2 /* RTMainUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMainUser.swift; sourceTree = "<group>"; };
 		7CEDFC1B1E34E36700AA6C6A /* News.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		7CEDFC1D1E34E38400AA6C6A /* NewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
 		8B3CC4DC91F9DBFF7E7867D5 /* Pods_Abstract_VK_MOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Abstract_VK_MOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +147,7 @@
 		7C0453D61E32446F00A5EE9F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7CA3DEAC1E3540DA00D26CE2 /* NewsCell */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -156,6 +189,7 @@
 			children = (
 				7C0453EC1E3255DE00A5EE9F /* Alerts.swift */,
 				7C0453EE1E32562000A5EE9F /* Extensions.swift */,
+				7C3E62D81E3780AB004F50F9 /* RealmSwift+ObjectMapperOperator.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -163,6 +197,8 @@
 		7C0453DD1E32468C00A5EE9F /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				7CA3DE991E352C4D00D26CE2 /* NewsFeed */,
+				7CA3DEAD1E35EE4100D26CE2 /* MainUser.swift */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -172,6 +208,7 @@
 			children = (
 				7C0453DF1E324CAB00A5EE9F /* AlamofireHelpers.swift */,
 				7C0453E61E3252A800A5EE9F /* Router.swift */,
+				7CA3DEAF1E35F99A00D26CE2 /* RTMainUser.swift */,
 				7C0453E31E32516C00A5EE9F /* Errors */,
 			);
 			name = API;
@@ -202,6 +239,33 @@
 				7CA3DE851E34F5C400D26CE2 /* ScreensSwitcher.swift */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		7CA3DE991E352C4D00D26CE2 /* NewsFeed */ = {
+			isa = PBXGroup;
+			children = (
+				7CA3DE911E3529E900D26CE2 /* NewsFeed.swift */,
+				7CA3DE931E352B9B00D26CE2 /* Item.swift */,
+				7CA3DE951E352BC900D26CE2 /* Group.swift */,
+				7CA3DE971E352C4700D26CE2 /* Profile.swift */,
+				7CA3DE9A1E352E8500D26CE2 /* Comment.swift */,
+				7CA3DE9C1E352EF000D26CE2 /* Like.swift */,
+				7CA3DE9E1E352F2100D26CE2 /* Repost.swift */,
+				7CA3DEA01E352F5900D26CE2 /* Attachment.swift */,
+				7CA3DEA21E352F8500D26CE2 /* Geo.swift */,
+				7CA3DEA41E352FE100D26CE2 /* Photo.swift */,
+				7CA3DEA61E353B7300D26CE2 /* Place.swift */,
+			);
+			name = NewsFeed;
+			sourceTree = "<group>";
+		};
+		7CA3DEAC1E3540DA00D26CE2 /* NewsCell */ = {
+			isa = PBXGroup;
+			children = (
+				7CA3DEA81E3540C700D26CE2 /* NewsCell.swift */,
+				7CA3DEAA1E3540D500D26CE2 /* NewsCell.xib */,
+			);
+			name = NewsCell;
 			sourceTree = "<group>";
 		};
 		7CEDFC1F1E34E38800AA6C6A /* News */ = {
@@ -292,6 +356,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CA3DEAB1E3540D500D26CE2 /* NewsCell.xib in Resources */,
 				7C0453CE1E32438E00A5EE9F /* LaunchScreen.storyboard in Resources */,
 				7C0453CB1E32438E00A5EE9F /* Assets.xcassets in Resources */,
 				7C0453F11E325A3600A5EE9F /* Login.storyboard in Resources */,
@@ -355,19 +420,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CA3DEAE1E35EE4100D26CE2 /* MainUser.swift in Sources */,
+				7CA3DEA51E352FE100D26CE2 /* Photo.swift in Sources */,
 				7CA3DE861E34F5C400D26CE2 /* ScreensSwitcher.swift in Sources */,
+				7CA3DE961E352BC900D26CE2 /* Group.swift in Sources */,
 				7CEDFC1E1E34E38400AA6C6A /* NewsController.swift in Sources */,
+				7CA3DEB01E35F99A00D26CE2 /* RTMainUser.swift in Sources */,
 				7C0453E91E32543D00A5EE9F /* VKErrorsDescription.swift in Sources */,
+				7CA3DEA11E352F5900D26CE2 /* Attachment.swift in Sources */,
+				7CA3DE9F1E352F2100D26CE2 /* Repost.swift in Sources */,
+				7CA3DE921E3529E900D26CE2 /* NewsFeed.swift in Sources */,
+				7CA3DE941E352B9B00D26CE2 /* Item.swift in Sources */,
 				7C0453F51E334FCD00A5EE9F /* AuthWebViewController.swift in Sources */,
+				7CA3DE981E352C4700D26CE2 /* Profile.swift in Sources */,
 				7C0453EF1E32562000A5EE9F /* Extensions.swift in Sources */,
 				7C0453C41E32438E00A5EE9F /* AppDelegate.swift in Sources */,
+				7CA3DEA31E352F8500D26CE2 /* Geo.swift in Sources */,
 				7C0453ED1E3255DE00A5EE9F /* Alerts.swift in Sources */,
 				7CA3DE8E1E35234E00D26CE2 /* CustomLaunchScreen.swift in Sources */,
 				7C0453EB1E32546A00A5EE9F /* VKBackendErrors.swift in Sources */,
 				7C0453E01E324CAB00A5EE9F /* AlamofireHelpers.swift in Sources */,
+				7CA3DE9D1E352EF000D26CE2 /* Like.swift in Sources */,
+				7CA3DEA71E353B7300D26CE2 /* Place.swift in Sources */,
 				7C0453E71E3252A800A5EE9F /* Router.swift in Sources */,
+				7C3E62D91E3780AB004F50F9 /* RealmSwift+ObjectMapperOperator.swift in Sources */,
 				7C0453DC1E32454600A5EE9F /* Constants.swift in Sources */,
+				7CA3DE9B1E352E8500D26CE2 /* Comment.swift in Sources */,
 				7C0453E51E32518600A5EE9F /* VKErrors.swift in Sources */,
+				7CA3DEA91E3540C700D26CE2 /* NewsCell.swift in Sources */,
 				7C0453F31E325BE200A5EE9F /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

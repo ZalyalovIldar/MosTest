@@ -47,10 +47,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate{
     
     func setUpProject(){
+        self.printProjectSettings()
         self.setupLogger()
         self.setupSDWebImage()
         self.setupSVProgressHUD()
         self.setupAppearance()
+        
+        Realm.Configuration.defaultConfiguration.deleteRealmIfMigrationNeeded = true
     }
     
     func setupAppearance() {
@@ -60,6 +63,15 @@ extension AppDelegate{
         navigationBar.barTintColor = AppColors.MainColor
         navigationBar.tintColor = UIColor.white
         navigationBar.isTranslucent = false
+    }
+    
+    func printProjectSettings() {
+        #if DEBUG
+            // print documents directory and device ID
+            print("\n*******************************************\nDOCUMENTS:\n\(NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])\n*******************************************\n")
+            print("\n*******************************************\nDEVICE ID:\n\((UIDevice.current.identifierForVendor?.uuidString)!)\n*******************************************\n")
+            print("\n*******************************************\nBUNDLE ID:\n\((Bundle.main.bundleIdentifier)!)\n*******************************************\n")
+        #endif
     }
     
     func setupLogger() {
