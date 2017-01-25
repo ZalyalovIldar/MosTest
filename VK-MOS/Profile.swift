@@ -18,6 +18,15 @@ class Profile: Object {
     dynamic var photoOriginal: String = ""
     dynamic var screenName: String = ""
     
+    var phtoUrl: URL?{
+        guard self.photoSmall != "" else {return nil}
+        return self.photoSmall.fs_toURL()!
+    }
+    
+    var fullname: String {
+        return firstName + " " + lastName
+    }
+    
     override static func primaryKey() -> String? {
         return "id"
     }
@@ -27,10 +36,6 @@ class Profile: Object {
         self.init()
     }
     
-    var phtoUrl: URL?{
-        guard self.photoSmall != "" else {return nil}
-        return self.photoSmall.fs_toURL()!
-    }
 
 }
 
@@ -40,7 +45,7 @@ extension Profile: Mappable{
         self.firstName      <- map["first_name"]
         self.lastName       <- map["last_name"]
         self.screenName     <- map["screen_name"]
-        self.photoSmall         <- map["photo_50"]
+        self.photoSmall     <- map["photo_100"]
         self.photoOriginal  <- map["photo_medium_rec"]
     }
 }

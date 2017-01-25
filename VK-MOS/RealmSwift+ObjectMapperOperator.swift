@@ -27,6 +27,7 @@ func <- <T: Mappable>(left: List<T>, right: Map)
     {
         if let theArray = array
         {
+    
             left.append(objectsIn: theArray)
         }
     }

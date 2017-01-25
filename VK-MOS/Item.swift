@@ -21,6 +21,10 @@ class Item: Object {
     let attachments = List<Attachment>()
     dynamic var geo: Geo?
     
+    var postedDate: String{
+        let date = Date(timeIntervalSince1970: self.date.doubleValue)
+        return date.getElapsedInterval()
+    }
     
     override static func primaryKey() -> String? {
         return "sourceId"
@@ -31,10 +35,6 @@ class Item: Object {
         self.init()
     }
     
-    var postedDate: String{
-        let date = Date(timeIntervalSince1970: self.date.doubleValue)
-        return date.getElapsedInterval()
-    }
 }
 
 extension Item: Mappable{

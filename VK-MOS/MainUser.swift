@@ -49,8 +49,8 @@ class MainUser: Object {
 extension MainUser: Mappable{
     
     func mapping(map: ObjectMapper.Map) {
-        self.id <- map["id"]
-        self.firstName <- map["first_name"]
-        self.lastName <- map["last_name"]
+        self.id         <- map["id"]
+        self.firstName  <- map["first_name"]
+        self.lastName   <- map["last_name"]
     }
 }

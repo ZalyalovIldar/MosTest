@@ -28,14 +28,14 @@ extension Router.User: RouterProtocol {
     var path: String {
         switch self {
         case .getMainUserInfo(_)         : return "/users.get"
-        case .getMainUserNews(_) : return "/newsfeed.get"
+        case .getMainUserNews(_)         : return "/newsfeed.get"
         }
     }
     
     var parameters: [String : AnyObject]? {
         switch self {
         case .getMainUserInfo(let userId): return ["user_id": userId as AnyObject, "v":"5.62" as AnyObject]
-        case .getMainUserNews(let token, let startFrom)         : return ["filters":"post,photo,wall_photo,note" as AnyObject, "return_banned":"1" as AnyObject, "start_from":startFrom as AnyObject, "count":10 as AnyObject,"access_token":token as AnyObject, "v":"5.62" as AnyObject]
+        case .getMainUserNews(let token, let startFrom)  : return ["filters":"post,photo,note" as AnyObject, "return_banned":"1" as AnyObject, "start_from":startFrom as AnyObject, "count":20 as AnyObject,"access_token":token as AnyObject, "v":"5.62" as AnyObject]
         }
     }
     
@@ -51,12 +51,16 @@ class RTEmptyResponse: Mappable{
 }
 class RTUserNewsFeedResponse: Mappable{
     var newsFeed: NewsFeed?
+    var isMapped = false
     required convenience init?(map: Map) {
         self.init()
     }
     
     func mapping(map: Map) {
-        self.newsFeed <- map["response"]
+        if isMapped == false{
+          self.newsFeed <- map["response"]
+            isMapped = true
+        }
     }
 }
 class RTUserResponse: Mappable {

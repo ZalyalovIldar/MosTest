@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 class Repost: Object {
-    dynamic var count: Int32 = 0
+    dynamic var count: Int = 0
     dynamic var userReposted: Bool = false
     
     required convenience init?(map: ObjectMapper.Map) {
@@ -21,7 +21,7 @@ class Repost: Object {
 
 extension Repost: Mappable{
     func mapping(map: ObjectMapper.Map) {
-        self.count <- map["count"]
+        self.count        <- map["count"]
         self.userReposted <- map["user_reposted"]
     }
 }

@@ -21,7 +21,7 @@ class Attachment: Object {
 
 extension Attachment: Mappable{
     func mapping(map: ObjectMapper.Map) {
-        self.type <- map["type"]
+        self.type        <- map["type"]
         self.typeContent <- map["photo"]
     }
 }

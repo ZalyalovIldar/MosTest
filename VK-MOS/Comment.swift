@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 class Comment: Object {
-    dynamic var count: Int32 = 0
+    dynamic var count: Int = 0
     dynamic var canPost: Bool = false
     
     required convenience init?(map: ObjectMapper.Map) {
@@ -21,7 +21,7 @@ class Comment: Object {
 
 extension Comment: Mappable{
     func mapping(map: ObjectMapper.Map) {
-        self.count <- map["count"]
+        self.count   <- map["count"]
         self.canPost <- map["can_post"]
     }
 }

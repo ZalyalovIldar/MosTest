@@ -22,8 +22,8 @@ class Geo: Object {
 
 extension Geo: Mappable{
     func mapping(map: ObjectMapper.Map) {
-        self.type <- map["type"]
+        self.type        <- map["type"]
         self.coordinates <- map["coordinates"]
-        self.place <- map["place"]
+        self.place       <- map["place"]
     }
 }

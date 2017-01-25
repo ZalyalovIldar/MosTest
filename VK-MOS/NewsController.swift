@@ -10,7 +10,11 @@ import UIKit
 
 class NewsController: UIViewController {
 
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     var newsFeedModel: NewsFeed?
     var itemsArray: [Item] = []
     var groupsArray: [Group] = []
@@ -19,6 +23,8 @@ class NewsController: UIViewController {
     var activityIndicatorForCollectionView: UIActivityIndicatorView!
     var footerCollectionViewActivityIndicatorView: UIView!
     var refreshControl: UIRefreshControl!
+    var isOffline = false
+    
     
     var task: DataRequest? {
         willSet {
@@ -28,20 +34,15 @@ class NewsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.collectionView.register(NewsCell.nib(), forCellWithReuseIdentifier: NewsCell.cellIdentifier())
         
-        self.refreshControl = UIRefreshControl() 
-//        self.collectionView.addPullToRefreshTo(scrollView: self.collectionView, triggeringMethodName: "endRefreshing")
-        let refresher = UIRefreshControl()
-        self.collectionView!.alwaysBounceVertical = true
-        refresher.tintColor = UIColor.white
-        refresher.addTarget(self, action: #selector(loadNews), for: .valueChanged)
-        self.collectionView.addSubview(refresher)
-        
+        self.setUpMainAppereance()
         self.loadNews()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,6 +59,18 @@ class NewsController: UIViewController {
 
     //MARK: Custom methods
     
+    func setUpMainAppereance(){
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.tintColor = UIColor.black
+        self.refreshControl.addTarget(self, action: #selector(loadNews), for: .valueChanged)
+        self.tableView.addSubview(self.refreshControl)
+        
+        self.tableView.register(NewsCell.nib(), forCellReuseIdentifier: NewsCell.cellIdentifier())
+        
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 450
+    }
+    
     func loadNews(){
         guard let accessToken = MainUser.currentUser()?.token else {return}
         SVProgressHUD.show()
@@ -67,12 +80,14 @@ class NewsController: UIViewController {
                 guard let newsFeed = value.newsFeed  else {return}
                 self.newsFeedModel = newsFeed
                 Logger.debug("\nSussess response: \(newsFeed)")
-                self.itemsArray    = Array(newsFeed.items) 
+        
+                self.itemsArray    = Array(newsFeed.items)
                 self.groupsArray   = Array(newsFeed.groups)
-                self.profilesArray = Array(newsFeed.profiles) 
+                self.profilesArray = Array(newsFeed.profiles)
                 
                 DispatchQueue.main.async(execute: {
                     self.refreshControl.endRefreshing()
+                    self.tableView.reloadData()
                     SVProgressHUD.dismiss()
                 })
             case .failure(let error):
@@ -85,9 +100,6 @@ class NewsController: UIViewController {
         })
     }
     
-    func endRefreshing(){
-        self.loadNews()
-    }
     /*
     // MARK: - Navigation
 
@@ -100,32 +112,47 @@ class NewsController: UIViewController {
 
 }
 
-extension NewsController: UICollectionViewDelegate, UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+extension NewsController: UITableViewDataSource, UITableViewDelegate{
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.itemsArray.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsCell.cellIdentifier(), for: indexPath) as! NewsCell
-//        cell.configureWithCamera(camera: self.camerasArray[indexPath.row])
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var group: Group? = nil
+        var profile: Profile? = nil
+        var item: Item! = nil
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.cellIdentifier(), for: indexPath) as! NewsCell
+        
+        if self.isOffline == true{
+            guard let realm = BDRealm else {fatalError()}
+            item = realm.objects(Item.self)[indexPath.row]
+            group = realm.object(ofType: Group.self, forPrimaryKey: item.sourceId)
+            profile = realm.object(ofType: Profile.self, forPrimaryKey: item.sourceId)
+        }else{
+            item = self.itemsArray[indexPath.row]
+            group = self.groupsArray.count > 0 ? self.groupsArray.filter{$0.id == -item.sourceId}.first : nil
+            profile = self.profilesArray.count > 0 ? self.profilesArray.filter{$0.id == item.sourceId}.first : nil
+        }
+        
+        if group != nil{
+            cell.prepareCellWith(item: item, group: group!)
+        }
+        
+        if profile != nil{
+            cell.prepareCellWith(item: item, profile: profile!)
+        }
+        
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: self.collectionView.fs_width - 20, height:  CGFloat(438))
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: self.view.fs_width, height: 55)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "activity indicator", for: indexPath)
-        self.footerCollectionViewActivityIndicatorView  = self.initCollectionViewFooter()
-        footerView.addSubview(self.footerCollectionViewActivityIndicatorView)
-        
-        return footerView
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return self.initCollectionViewFooter()
     }
     
     func initCollectionViewFooter() ->UIView {
@@ -140,34 +167,37 @@ extension NewsController: UICollectionViewDelegate, UICollectionViewDataSource{
         }
         return view
     }
-    
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        if scrollView == self.collectionView {
-//            if ((scrollView.contentOffset.y + scrollView.frame.size.height) + 50 >= scrollView.contentSize.height)
-//            {
-//                if !self.isNewDataLoading{
-//                    guard FSInternetConnectionHelper.checkConnection(showErrorOnView: self.footerCollectionViewActivityIndicatorView) else {return}
-//                    let collection = self.camerasCollection
-//                    guard let lCamerasCollection = collection else {return}
-//                    
-//                    self.activityIndicatorForCollectionView?.startAnimating()
-//                    
-//                    self.isNewDataLoading = true
-//                    TBCamera.loadNextCamerasAfter(cameras: lCamerasCollection, result: { [weak self] (collection) in
-//                        
-//                        self?.activityIndicatorForCollectionView?.stopAnimating()
-//                        
-//                        self?.isNewDataLoading = false
-//                        guard let camerasResource = collection?.resources as? [TBCamera] else {return}
-//                        
-//                        self?.camerasArray = camerasResource
-//                        
-//                        self?.camerasCollection = collection
-//                        self?.collectionView.reloadData()
-//                    })
-//                }
-//            }
-//        }
-//        
-//    }
 }
+
+
+
+////    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+////        if scrollView == self.collectionView {
+////            if ((scrollView.contentOffset.y + scrollView.frame.size.height) + 50 >= scrollView.contentSize.height)
+////            {
+////                if !self.isNewDataLoading{
+////                    guard FSInternetConnectionHelper.checkConnection(showErrorOnView: self.footerCollectionViewActivityIndicatorView) else {return}
+////                    let collection = self.camerasCollection
+////                    guard let lCamerasCollection = collection else {return}
+////                    
+////                    self.activityIndicatorForCollectionView?.startAnimating()
+////                    
+////                    self.isNewDataLoading = true
+////                    TBCamera.loadNextCamerasAfter(cameras: lCamerasCollection, result: { [weak self] (collection) in
+////                        
+////                        self?.activityIndicatorForCollectionView?.stopAnimating()
+////                        
+////                        self?.isNewDataLoading = false
+////                        guard let camerasResource = collection?.resources as? [TBCamera] else {return}
+////                        
+////                        self?.camerasArray = camerasResource
+////                        
+////                        self?.camerasCollection = collection
+////                        self?.collectionView.reloadData()
+////                    })
+////                }
+////            }
+////        }
+////        
+////    }
+//}

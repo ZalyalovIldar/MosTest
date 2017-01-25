@@ -18,6 +18,11 @@ class Group: Object {
     dynamic var isAdmin: Bool = false //is_admin
     dynamic var photoSmall: String = "" //photo 50х50
     
+    var phtoUrl: URL?{
+        guard self.photoSmall != "" else {return nil}
+        return self.photoSmall.fs_toURL()
+    }
+
     override static func primaryKey() -> String? {
         return "id"
     }
@@ -27,21 +32,16 @@ class Group: Object {
         self.init()
     }
     
-    var phtoUrl: URL?{
-        guard self.photoSmall != "" else {return nil}
-        return self.photoSmall.fs_toURL()
-    }
-    
 }
 
 extension Group: Mappable{
     func mapping(map: ObjectMapper.Map) {
-        self.id <- map["id"]
-        self.name <- map["name"]
+        self.id         <- map["id"]
+        self.name       <- map["name"]
         self.screenName <- map["screen_name"]
-        self.isClosed <- map["is_closed"]
-        self.type <- map["type"]
-        self.isAdmin <- map["is_admin"]
-        self.photoSmall <- map["photo_50"]
+        self.isClosed   <- map["is_closed"]
+        self.type       <- map["type"]
+        self.isAdmin    <- map["is_admin"]
+        self.photoSmall <- map["photo_100"]
     }
 }
