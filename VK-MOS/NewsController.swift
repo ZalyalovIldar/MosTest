@@ -23,7 +23,6 @@ class NewsController: UIViewController {
     var activityIndicatorForCollectionView: UIActivityIndicatorView!
     var footerCollectionViewActivityIndicatorView: UIView!
     var refreshControl: UIRefreshControl!
-    var isOffline = false
     
     
     var task: DataRequest? {
@@ -71,24 +70,53 @@ class NewsController: UIViewController {
         self.tableView.estimatedRowHeight = 450
     }
     
+    func getSavedObjects(){
+        guard let realm = BDRealm else {fatalError()}
+        
+        self.newsFeedModel = realm.objects(NewsFeed.self).first
+        if let newsFeed = self.newsFeedModel{
+            self.itemsArray    = Array(newsFeed.items)
+            self.groupsArray   = Array(newsFeed.groups)
+            self.profilesArray = Array(newsFeed.profiles)
+        }
+    }
     func loadNews(){
         guard let accessToken = MainUser.currentUser()?.token else {return}
         SVProgressHUD.show()
+        guard Router.networkReachabilityManager?.isReachable == true else {
+            self.getSavedObjects()
+            SVProgressHUD.dismiss()
+            self.refreshControl.endRefreshing()
+            self.tableView.reloadData()
+            
+            return
+        }
         self.task = Router.User.getMainUserNews(userToken:accessToken, start_from: "").request().responseObject({ (response: DataResponse<RTUserNewsFeedResponse>) in
             switch response.result{
             case .success(let value):
                 guard let newsFeed = value.newsFeed  else {return}
                 self.newsFeedModel = newsFeed
                 Logger.debug("\nSussess response: \(newsFeed)")
-        
+                
+                do {
+                    guard let realm = BDRealm else {return}
+                    try realm.write({
+                        realm.delete(realm.objects(NewsFeed.self))
+                        realm.add(newsFeed, update: true)
+                    })
+                    
+                } catch let error {
+                    Logger.error("\nSaving NewsFeed info Error: \(error)")
+                }
+                
                 self.itemsArray    = Array(newsFeed.items)
                 self.groupsArray   = Array(newsFeed.groups)
                 self.profilesArray = Array(newsFeed.profiles)
                 
                 DispatchQueue.main.async(execute: {
                     self.refreshControl.endRefreshing()
-                    self.tableView.reloadData()
                     SVProgressHUD.dismiss()
+                    self.tableView.reloadData()
                 })
             case .failure(let error):
                 Logger.error("\nError when getting NewsWall: \(error)")
@@ -125,16 +153,9 @@ extension NewsController: UITableViewDataSource, UITableViewDelegate{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.cellIdentifier(), for: indexPath) as! NewsCell
         
-        if self.isOffline == true{
-            guard let realm = BDRealm else {fatalError()}
-            item = realm.objects(Item.self)[indexPath.row]
-            group = realm.object(ofType: Group.self, forPrimaryKey: item.sourceId)
-            profile = realm.object(ofType: Profile.self, forPrimaryKey: item.sourceId)
-        }else{
             item = self.itemsArray[indexPath.row]
             group = self.groupsArray.count > 0 ? self.groupsArray.filter{$0.id == -item.sourceId}.first : nil
             profile = self.profilesArray.count > 0 ? self.profilesArray.filter{$0.id == item.sourceId}.first : nil
-        }
         
         if group != nil{
             cell.prepareCellWith(item: item, group: group!)

@@ -23,12 +23,14 @@ extension BackendError: HumanErrorType {
     var description: String {
         switch self {
         case .notAuthorized     : return "User is not authorized"
+        case .internetIsOffline : return "Internet connection lost"
         }
     }
     
     var humanDescription: ErrorHumanDescription {
         switch self {
-        case .notAuthorized     : return ErrorHumanDescription(title: "Error", text: "")
+        case .notAuthorized     : return ErrorHumanDescription(title: "Oops", text: "Not authorized. Please Log in again.")
+        case .internetIsOffline : return ErrorHumanDescription(title: "Oops", text: "Internet connection appears to be offline. Please check the connection and try again.")
         }
     }
 }

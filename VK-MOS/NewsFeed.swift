@@ -17,6 +17,9 @@ class NewsFeed: Object {
     let groups   = List<Group>()
     let profiles = List<Profile>()
     
+    override static func primaryKey() -> String? {
+        return "nextFrom"
+    }
     
     required convenience init?(map: ObjectMapper.Map) {
         guard let _ = map.JSON["items"] as? Array<Any> else {return nil}
