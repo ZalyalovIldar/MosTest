@@ -8,6 +8,8 @@
 
 import Foundation
 
+// Class Helps to switch from LogIn screen to NewsWall screen
+
 class ScreensSwithcer: NSObject {
     class func switchScreens(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,

@@ -9,6 +9,7 @@
 import Foundation
 
 extension UIAlertController{
+    /// help presend controller on Top window
     func presentOnModal() {
         guard   let appDelegate = UIApplication.shared.delegate as? AppDelegate,
             let window = appDelegate.window else {return}
@@ -20,6 +21,8 @@ extension UIAlertController{
         }
         presentedController?.present(self, animated: true, completion: nil)
     }
+    
+    /// help presend Only one alert in cases such as Requests when response from server can triger alert showing few times
     func presentIfNoAlertsPresented() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
             let window = appDelegate.window else {return}
@@ -66,25 +69,15 @@ extension UITableViewCell {
 }
 
 extension HTTPCookieStorage{
+    /// Using to provide "Log Off" illusion for user
     static func removeCookies(){
         let storage = self.shared
         storage.cookies?.forEach{storage.deleteCookie($0)}
     }
 }
 
-extension UIScrollView{
-    func addPullToRefreshTo(scrollView:UIScrollView, triggeringMethodName: String) -> UIRefreshControl{
-        let tableRefreshControl:UIRefreshControl = UIRefreshControl()
-        tableRefreshControl.backgroundColor = UIColor.white
-        tableRefreshControl.addTarget(self, action: Selector(triggeringMethodName), for: UIControlEvents.valueChanged)
-        scrollView.addSubview(tableRefreshControl)
-        return tableRefreshControl
-    }
-
-}
-
 extension Date {
-    
+    /// Help getting time interval from Date
     func getElapsedInterval() -> String {
         
         let interval = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: self, to: Date())
@@ -108,12 +101,6 @@ extension Date {
             return "a moment ago"
         }
         
-    }
-}
-
-extension UITextView{
-    func addDotsLineBreaker(){
-        self.textContainer.lineBreakMode = .byTruncatingTail
     }
 }
 

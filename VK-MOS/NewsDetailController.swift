@@ -39,6 +39,7 @@ class NewsDetailController: UIViewController {
         downloadAvatarImage(url: postAvatarUrl, imageView: self.avatarImageView)
         downloadMainImage(attachmentsArr: Array(postItem.attachments), constraint: self.lineTopConstraint, imageView: self.postImageView)
         
+        //using for IPad version
         if self.view.bounds.width > 414{
             self.postImageHeightConstraint.constant = self.postImageHeightConstraint.constant * 3
         }

@@ -11,7 +11,7 @@ import ObjectMapper
 
 class Attachment: Object {
     dynamic var type: String = ""
-    dynamic var typeContent: Photo?
+    dynamic var typeContent: Photo? //in this project using only photo, but there are many others
     
     required convenience init?(map: ObjectMapper.Map) {
         guard let _ = map.JSON["photo"] else {return nil}

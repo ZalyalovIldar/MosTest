@@ -9,6 +9,8 @@
 import Foundation
 import ObjectMapper
 
+//MainUser - user that already Login 
+
 class MainUser: Object {
     dynamic var id: Int = 0
     dynamic var firstName: String = ""

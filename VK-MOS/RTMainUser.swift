@@ -41,15 +41,18 @@ extension Router.User: RouterProtocol {
     var parameters: [String : AnyObject]? {
         switch self {
         case .getMainUserInfo(let userId)                   : return ["user_id": userId as AnyObject, "v":"5.62" as AnyObject]
+        
         case .getMainUserNews(let token, let startFrom)     : return ["filters":"post,photo,note" as AnyObject, "return_banned":"1" as AnyObject, "start_from":startFrom as AnyObject, "count":20 as AnyObject,"access_token":token as AnyObject, "v":"5.62" as AnyObject]
+        
         case .addLikeToItem(let itemId, let type, let token, let ownerId): return ["item_id":itemId as AnyObject, "type": type as AnyObject, "access_token":token as AnyObject, "owner_id":ownerId as AnyObject, "v":"5.62" as AnyObject]
+            
         case .deleteLikeFromItem(let itemId, let type, let token, let ownerId) : return
             ["item_id":itemId as AnyObject, "type": type as AnyObject, "access_token":token as AnyObject, "owner_id":ownerId as AnyObject, "v":"5.62" as AnyObject]
         }
     }
     
 }
-
+//Using for empty response or for Likes, Comments, Reposts
 class RTEmptyResponse: Mappable{
     var response: Response?
     required convenience init?(map: Map) {
@@ -59,6 +62,7 @@ class RTEmptyResponse: Mappable{
         self.response <- map["response"]
     }
 }
+//Using for Response with NewsFeed
 class RTUserNewsFeedResponse: Mappable{
     var newsFeed: NewsFeed?
     var isMapped = false
@@ -73,6 +77,7 @@ class RTUserNewsFeedResponse: Mappable{
         }
     }
 }
+//Using for Response with MainUser data
 class RTUserResponse: Mappable {
     var user: MainUser?
     

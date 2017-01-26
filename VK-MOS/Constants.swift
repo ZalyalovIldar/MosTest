@@ -9,8 +9,11 @@
 import Foundation
 import UIKit
 
+// Logger needed for debuggin
 var Logger: XCGLogger {return XCGLogger.default}
+// BDRealm 
 var BDRealm: Realm? {return try? Realm()}
+// URL for authontication using webView
 let VKAuthURL:URL = "https://oauth.vk.com/authorize?client_id=5834912&scope=friends,offline,wall&DISPLAY=touch&REDIRECT_URI=http://oauth.vk.com/blank.html&response_type=token".fs_toURL()!
 
 
@@ -41,14 +44,14 @@ private func GenerateKey (_ prefix: String, key: String) -> String {
 enum Storyboard {
     
     case login
-    case welcome
+    case customLaunchScreen
     case newsWall
     
     var name: String {
         switch self {
-        case .login     : return  "Login"
-        case .welcome   : return  "WelcomeScreen"
-        case .newsWall   : return "News"
+        case .login                : return  "Login"
+        case .customLaunchScreen   : return  "CustomLaunchScreen"
+        case .newsWall             : return "News"
         }
     }
     

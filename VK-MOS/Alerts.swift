@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+/// Use this function to show Unauthorite error
 func ShowUnauthorizedAlert() {
     let errorDescription = BackendError.notAuthorized.humanDescription
     let alertController = UIAlertController(title: errorDescription.title, message: errorDescription.text, preferredStyle: UIAlertControllerStyle.alert)
@@ -22,7 +22,7 @@ func ShowUnauthorizedAlert() {
         alertController.presentIfNoAlertsPresented()
     }
 }
-
+/// Use this function to show Any error message you want
 func ShowErrorAlert(_ title: String? = "Sorry", message: String? = "Something went wrong") {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     
