@@ -46,11 +46,22 @@ class NewsController: UIViewController {
     
     //MARK: Buttons action
     @IBAction func exitPressed(_ sender: Any) {
-        SVProgressHUD.show()
-        MainUser.removeUser()
-        HTTPCookieStorage.removeCookies()
-        ScreensSwithcer.switchScreens()
-        SVProgressHUD.dismiss()
+        
+        let alertController = UIAlertController(title: "", message: "Exit?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let yesButton = UIAlertAction(title: "YES", style: .default) { (alertAction: UIAlertAction) -> Void in
+            MainUser.removeUser()
+            HTTPCookieStorage.removeCookies()
+            ScreensSwithcer.switchScreens()
+        }
+        let noButton = UIAlertAction(title: "NO", style: .destructive) { (alertAction: UIAlertAction) -> Void in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(yesButton)
+        alertController.addAction(noButton)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     //MARK: Custom methods
