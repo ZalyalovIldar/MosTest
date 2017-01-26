@@ -9,7 +9,7 @@
 import UIKit
 
 protocol VKItemTableViewCellDelegate {
-    func didTapLikeFor(item:Item, withButton: UIButton)
+    func didTapLikeFor(item:Item, withButton: UIButton, andLabel: UILabel)
 }
 
 class NewsCell: UITableViewCell {
@@ -98,7 +98,7 @@ class NewsCell: UITableViewCell {
     
     @IBAction func likeButtonPressed(_ sender: UIButton) {
         guard let lItem = self.currentItem else {return}
-        self.delegate?.didTapLikeFor(item: lItem, withButton: sender)
+        self.delegate?.didTapLikeFor(item: lItem, withButton: sender, andLabel: self.postLikesLabel)
     }
     
 }

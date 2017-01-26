@@ -16,6 +16,7 @@ class Like: Object {
     dynamic var canLike: Bool = false
     dynamic var canPublish: Bool = false
     
+    
     required convenience init?(map: ObjectMapper.Map) {
         guard let _ = map.JSON["count"] as? Int32 else {return nil}
         self.init()

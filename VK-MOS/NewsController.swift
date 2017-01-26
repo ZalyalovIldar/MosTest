@@ -220,21 +220,27 @@ extension NewsController: UITableViewDataSource, UITableViewDelegate{
 }
 
 extension NewsController: VKItemTableViewCellDelegate{
-    func didTapLikeFor(item: Item, withButton: UIButton){
+    func didTapLikeFor(item: Item, withButton: UIButton, andLabel: UILabel){
         guard let user = MainUser.currentUser() else {return}
         
-//        let LPostId = item.sourceId < 0 ? item.sourceId * -1 : item.sourceId
         self.task = Router.User.addLikeToItem(withId: item.postId, type: item.type, userToken: user.token, ownerId:item.sourceId).request().responseObject({[weak self] (response:DataResponse<RTEmptyResponse>) in
             
             switch response.result{
             case .success(let value):
-                guard let LResponse = value.response?.dictionary  else {return}
+                guard let LResponseCount = value.response?.responseCount  else {return}
                 
-                Logger.debug("\nPost liked successfully: \(LResponse)")
-                
+                Logger.debug("\nPost liked successfully: \(LResponseCount)")
+                guard let realm = BDRealm else {return}
+                do{
+                    try! realm.write {
+                        item.likes?.count = LResponseCount
+                        item.likes?.userLikes = true
+                    }
+                }
+
                 DispatchQueue.main.async(execute: {
                       withButton.isSelected = true
-//                    self?.tableView.reloadData()
+                      andLabel.text = "\(LResponseCount)"
                 })
             case .failure(let error):
                 Logger.error("\nError when getting next scope News: \(error)")
