@@ -25,10 +25,10 @@
                                 <rect key="frame" x="0.0" y="-44" width="375" height="711"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vD3-QL-yZK">
-                                <rect key="frame" x="125" y="423" width="124" height="44"/>
+                                <rect key="frame" x="113.5" y="423" width="147" height="44"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                <state key="normal" title="Login in VK">
+                                <state key="normal" title="Login with VK">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>

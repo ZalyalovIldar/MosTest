@@ -10,9 +10,6 @@ import UIKit
 
 class NewsController: UIViewController {
     
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var tableView: UITableView!
     
     var newsFeedModel: NewsFeed?
@@ -49,11 +46,22 @@ class NewsController: UIViewController {
     
     //MARK: Buttons action
     @IBAction func exitPressed(_ sender: Any) {
-        SVProgressHUD.show()
-        MainUser.removeUser()
-        HTTPCookieStorage.removeCookies()
-        ScreensSwithcer.switchScreens()
-        SVProgressHUD.dismiss()
+        
+        let alertController = UIAlertController(title: "", message: "Exit?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let yesButton = UIAlertAction(title: "YES", style: .default) { (alertAction: UIAlertAction) -> Void in
+            MainUser.removeUser()
+            HTTPCookieStorage.removeCookies()
+            ScreensSwithcer.switchScreens()
+        }
+        let noButton = UIAlertAction(title: "NO", style: .destructive) { (alertAction: UIAlertAction) -> Void in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(yesButton)
+        alertController.addAction(noButton)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     //MARK: Custom methods
@@ -156,15 +164,37 @@ class NewsController: UIViewController {
         })
     }
     
-    /*
+
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+        
+      guard let detailController = segue.destination as? NewsDetailController,
+        let indePath = sender as? IndexPath, segue.identifier == "segue"
+        else {return}
+        
+        var pName: String
+        var pAvatarUrl: URL
+        
+        let item = self.itemsArray[indePath.row]
+        
+        if item.sourceId < 0 {
+            let group = self.groupsArray.filter{$0.id == -item.sourceId}.first
+            guard let name = group?.name, let url = group?.phtoUrl else {return}
+            pName = name
+            pAvatarUrl = url
+        }else{
+            let profile = self.profilesArray.filter{$0.id == item.sourceId}.first
+            guard let name = profile?.fullname, let url = profile?.phtoUrl else {return}
+            pName = name
+            pAvatarUrl = url
+        }
+        
+        detailController.postName = pName
+        detailController.postAvatarUrl = pAvatarUrl
+        detailController.postItem = item
+        
      }
-     */
+ 
     
 }
 //MARK: UITableView Delegate & DataSource methods
@@ -195,6 +225,11 @@ extension NewsController: UITableViewDataSource, UITableViewDelegate{
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "segue", sender: indexPath)
+         self.tableView.fs_deselectSelectedRow(true)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
