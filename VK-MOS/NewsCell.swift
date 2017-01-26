@@ -71,7 +71,7 @@ class NewsCell: UITableViewCell {
         self.currentItem = item
         self.postDateLabel.text = item.postedDate
         self.postTextLabel.text = item.text
-        self.postLikeButton.isSelected = (item.likes?.userLikes)!
+        self.postLikeButton.isSelected = item.likes != nil ? (item.likes?.userLikes)! : false
         guard let likeCount = item.likes?.count, let comCount = item.comments?.count,
             let repCount = item.reposts?.count else {return}
         self.postLikesLabel.text    = String(describing: likeCount)

@@ -167,7 +167,7 @@ class NewsController: UIViewController {
      */
     
 }
-
+//MARK: UITableView Delegate & DataSource methods
 extension NewsController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -219,11 +219,23 @@ extension NewsController: UITableViewDataSource, UITableViewDelegate{
     }
 }
 
+//MARK: VKItemTableViewCell Delegate method
 extension NewsController: VKItemTableViewCellDelegate{
     func didTapLikeFor(item: Item, withButton: UIButton, andLabel: UILabel){
         guard let user = MainUser.currentUser() else {return}
         
-        self.task = Router.User.addLikeToItem(withId: item.postId, type: item.type, userToken: user.token, ownerId:item.sourceId).request().responseObject({[weak self] (response:DataResponse<RTEmptyResponse>) in
+        if withButton.isSelected == false{
+            self.addLikeActionFrom(item: item, withButton: withButton, andLabel: andLabel, andToken: user.token)
+        }else{
+            self.deleteLikeActionFrom(item: item, withButton: withButton, andLabel: andLabel, andToken: user.token)
+        }
+        
+    }
+    
+    //MARK: Helpers methods
+    
+    func addLikeActionFrom(item: Item, withButton: UIButton, andLabel: UILabel, andToken: String){
+        self.task = Router.User.addLikeToItem(withId: item.postId, type: item.type, userToken: andToken, ownerId:item.sourceId).request().responseObject({(response:DataResponse<RTEmptyResponse>) in
             
             switch response.result{
             case .success(let value):
@@ -237,17 +249,42 @@ extension NewsController: VKItemTableViewCellDelegate{
                         item.likes?.userLikes = true
                     }
                 }
-
                 DispatchQueue.main.async(execute: {
-                      withButton.isSelected = true
-                      andLabel.text = "\(LResponseCount)"
+                    withButton.isSelected = true
+                    andLabel.text = "\(LResponseCount)"
                 })
             case .failure(let error):
-                Logger.error("\nError when getting next scope News: \(error)")
+                Logger.error("\nError when adding like: \(error)")
+            }
+        })
+    }
+    
+    func deleteLikeActionFrom(item: Item, withButton: UIButton, andLabel: UILabel, andToken: String){
+        self.task = Router.User.deleteLikeFromItem(withId: item.postId, type: item.type, userToken: andToken, ownerId:item.sourceId).request().responseObject({(response:DataResponse<RTEmptyResponse>) in
+            
+            switch response.result{
+            case .success(let value):
+                guard let LResponseCount = value.response?.responseCount  else {return}
+                
+                Logger.debug("\nPost like removed successfully: \(LResponseCount)")
+                guard let realm = BDRealm else {return}
+                do{
+                    try! realm.write {
+                        item.likes?.count = LResponseCount
+                        item.likes?.userLikes = false
+                    }
+                }
+                DispatchQueue.main.async(execute: {
+                    withButton.isSelected = false
+                    andLabel.text = "\(LResponseCount)"
+                })
+            case .failure(let error):
+                Logger.error("\nError when removing post like: \(error)")
             }
         })
     }
 }
+//MARK: ScrollView delegate method
 extension NewsController{
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.tableView{
