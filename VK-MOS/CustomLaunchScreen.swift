@@ -8,12 +8,13 @@
 
 import UIKit
 
+//This class is can be needed for custom Launch Screen.
+
 class CustomLaunchScreen: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
         ScreensSwithcer.switchScreens()
     }
 

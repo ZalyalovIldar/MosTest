@@ -14,6 +14,7 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.setUpMainAppereances()
     }
 

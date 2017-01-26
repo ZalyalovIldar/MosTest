@@ -11,11 +11,11 @@ import ObjectMapper
 
 
 class NewsFeed: Object {
-    dynamic var nextFrom: String = ""
+    dynamic var nextFrom: String = "" //using for pagination
     
-    let items    = List<Item>()
-    let groups   = List<Group>()
-    let profiles = List<Profile>()
+    let items    = List<Item>() //the body of post
+    let groups   = List<Group>() // Head of post (include name, avatar_photo, etc) only Users
+    let profiles = List<Profile>() // Head of post (include name, avatar_photo, etc) only Groups
     
     override static func primaryKey() -> String? {
         return "nextFrom"

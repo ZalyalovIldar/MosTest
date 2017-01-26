@@ -39,12 +39,14 @@ class NewsController: UIViewController {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     //MARK: Buttons action
+    
     @IBAction func exitPressed(_ sender: Any) {
         
         let alertController = UIAlertController(title: "", message: "Exit?", preferredStyle: UIAlertControllerStyle.alert)
@@ -66,6 +68,7 @@ class NewsController: UIViewController {
     
     //MARK: Custom methods
     
+    /// Adding colors, UI elements, etc. for inition state
     func setUpMainAppereance(){
         self.refreshControl = UIRefreshControl()
         self.refreshControl.tintColor = UIColor.black
@@ -78,6 +81,7 @@ class NewsController: UIViewController {
         self.tableView.estimatedRowHeight = 450
     }
     
+    ///Getting saved Realm objects from BD
     func getSavedObjects(){
         guard let realm = BDRealm else {fatalError()}
         
@@ -88,6 +92,7 @@ class NewsController: UIViewController {
             self.profilesArray = Array(newsFeed.profiles)
         }
     }
+    ///Using for get first 20 scope of data, if no Intenet connection -> take from Realm BD
     func loadNews(){
         guard let accessToken = MainUser.currentUser()?.token else {return}
         SVProgressHUD.show()
@@ -135,7 +140,7 @@ class NewsController: UIViewController {
             }
         })
     }
-    
+    /// Using for Pagination. Need send 'nextFrom' from NewsFeed model into 'from'.
     func loadNextNews(from: String){
         guard let accessToken = MainUser.currentUser()?.token else {return}
         self.task = Router.User.getMainUserNews(userToken: accessToken, start_from: from).request().responseObject({[weak self] (response:DataResponse<RTUserNewsFeedResponse>) in
@@ -260,16 +265,17 @@ extension NewsController: VKItemTableViewCellDelegate{
         guard let user = MainUser.currentUser() else {return}
         
         if withButton.isSelected == false{
-            self.addLikeActionFrom(item: item, withButton: withButton, andLabel: andLabel, andToken: user.token)
+            self.addLikeTo(item: item, withButton: withButton, andLabel: andLabel, andToken: user.token)
         }else{
-            self.deleteLikeActionFrom(item: item, withButton: withButton, andLabel: andLabel, andToken: user.token)
+            self.deleteLikeFrom(item: item, withButton: withButton, andLabel: andLabel, andToken: user.token)
         }
         
     }
     
     //MARK: Helpers methods
     
-    func addLikeActionFrom(item: Item, withButton: UIButton, andLabel: UILabel, andToken: String){
+    /// Add like to item and update Like count of model
+    func addLikeTo(item: Item, withButton: UIButton, andLabel: UILabel, andToken: String){
         self.task = Router.User.addLikeToItem(withId: item.postId, type: item.type, userToken: andToken, ownerId:item.sourceId).request().responseObject({(response:DataResponse<RTEmptyResponse>) in
             
             switch response.result{
@@ -293,8 +299,8 @@ extension NewsController: VKItemTableViewCellDelegate{
             }
         })
     }
-    
-    func deleteLikeActionFrom(item: Item, withButton: UIButton, andLabel: UILabel, andToken: String){
+    ///Remove like from Item and update likes count of model
+    func deleteLikeFrom(item: Item, withButton: UIButton, andLabel: UILabel, andToken: String){
         self.task = Router.User.deleteLikeFromItem(withId: item.postId, type: item.type, userToken: andToken, ownerId:item.sourceId).request().responseObject({(response:DataResponse<RTEmptyResponse>) in
             
             switch response.result{
@@ -321,6 +327,7 @@ extension NewsController: VKItemTableViewCellDelegate{
 }
 //MARK: ScrollView delegate method
 extension NewsController{
+    /// Checking if we scrolled to end and triger pagination methods
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.tableView{
             if ((scrollView.contentOffset.y + scrollView.frame.size.height) + 150 >= scrollView.contentSize.height)

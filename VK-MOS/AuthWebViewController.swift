@@ -11,7 +11,7 @@
 import UIKit
 
 class AuthWebViewController: UIViewController {
-
+    
     @IBOutlet weak var webView: UIWebView!
     var userId: String?
     var userToken: String?
@@ -24,8 +24,7 @@ class AuthWebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
         self.startLoadVKAuthPage()
     }
     
@@ -43,7 +42,7 @@ class AuthWebViewController: UIViewController {
     func startLoadVKAuthPage(){
         self.webView.loadRequest(URLRequest(url: VKAuthURL))
     }
-    
+    /// Getting user info with User_id and Saving it to Realm BD
     func getMainUserInfoWith(userId:String, complitionBlock:@escaping (Bool)->()){
         SVProgressHUD.show()
         self.task = Router.User.getMainUserInfo(userId: userId).request().responseObject({[weak self] (response: DataResponse<RTUserResponse>) in
@@ -59,7 +58,7 @@ class AuthWebViewController: UIViewController {
                         let mainUser = realm.objects(MainUser.self).first
                         mainUser?.token = (self?.userToken)!
                     })
-                  complitionBlock(true)
+                    complitionBlock(true)
                 } catch let error {
                     complitionBlock(false)
                     Logger.error("\nSaving User info Error: \(error)")
@@ -76,8 +75,8 @@ class AuthWebViewController: UIViewController {
             }
         })
     }
-    
-    func separeteAndSaveTokenFrom(string: String){
+    ///Helps getting access_token and user_id from reponse
+    func separeteStringFrom(string: String){
         let accesToken = string.fs_getStringBetweenString("access_token=", secondString: "&")
         self.userToken = accesToken
         
@@ -85,14 +84,9 @@ class AuthWebViewController: UIViewController {
         guard let LuserId = string.fs_getStringBetweenString("user_id=", secondString: endStr) else{return}
         self.userId = LuserId + endStr
     }
-    
-    func switchToNewsScreen(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-            let window = appDelegate.window else {return}
-        window.rootViewController = Storyboard.newsWall.firstController
-    }
 }
 
+//MARK: UIWebViewDelegate method
 extension AuthWebViewController: UIWebViewDelegate{
     
     func webViewDidStartLoad(_ webView: UIWebView) {
@@ -111,10 +105,11 @@ extension AuthWebViewController: UIWebViewDelegate{
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         if request.url?.absoluteString.contains("access_token=") == true {
             guard let urlWithToken = request.url?.absoluteString else {return false}
-            self.separeteAndSaveTokenFrom(string: urlWithToken)
+            self.separeteStringFrom(string: urlWithToken)
+            
             guard let LuserId = self.userId else {return false}
-            self.getMainUserInfoWith(userId: LuserId, complitionBlock: {[weak self] (finished) in
-                if finished == true{self?.switchToNewsScreen()}
+            self.getMainUserInfoWith(userId: LuserId, complitionBlock: {(finished) in
+                if finished == true{ScreensSwithcer.switchScreens()}
             })
         }
         

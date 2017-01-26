@@ -11,8 +11,8 @@ import ObjectMapper
 
 class Item: Object {
     dynamic var type: String = ""
-    dynamic var sourceId: Int = 0
-    dynamic var date: NSNumber  = 0
+    dynamic var sourceId: Int = 0   // id < 0 ? Group : Profile
+    dynamic var date: NSNumber  = 0 //unix_time
     dynamic var postId: Int = 0
     dynamic var text: String = ""
     dynamic var comments: Comment?

@@ -8,6 +8,8 @@
 
 import Foundation
 
+//Use Router to send request 
+
 enum Router{
     static let BaseURL = "https://api.vk.com/method"
     
