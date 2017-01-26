@@ -160,6 +160,7 @@
                 <outlet property="lineTopConstraint" destination="PAn-1a-iMU" id="5Dt-Ga-Gb9"/>
                 <outlet property="postCommentsLabel" destination="UIB-VM-YUa" id="ckE-XF-fQG"/>
                 <outlet property="postDateLabel" destination="pC2-YX-Kme" id="SD1-AD-Dss"/>
+                <outlet property="postImageHeightConstraint" destination="Sux-1I-6Ka" id="ZMk-iV-Q4c"/>
                 <outlet property="postImageView" destination="e7j-T8-Ew1" id="7kS-oC-XlN"/>
                 <outlet property="postLikeButton" destination="IzL-MN-Nak" id="tjB-RJ-hUG"/>
                 <outlet property="postLikesLabel" destination="ujF-sQ-PJg" id="VKa-AV-8qu"/>

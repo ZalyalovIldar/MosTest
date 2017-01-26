@@ -25,6 +25,7 @@ class NewsCell: UITableViewCell {
     
     @IBOutlet weak var postLikeButton: UIButton!
     @IBOutlet weak var lineTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var postImageHeightConstraint: NSLayoutConstraint!
     
     var currentItem: Item?
     var delegate: VKItemTableViewCellDelegate?
@@ -50,24 +51,24 @@ class NewsCell: UITableViewCell {
     //MARK: Cell Preparing methods
     func prepareCellWith(item:Item, group: Group){
         self.postNameLabel.text = group.name
-
-        self.downloadAvatarImage(url: group.phtoUrl)
-        self.downloadMainImage(attachmentsArr: Array(item.attachments))
         
-        self.setPost(item: item)
+        downloadAvatarImage(url: group.phtoUrl, imageView: self.avatarImageView)
+        downloadMainImage(attachmentsArr: Array(item.attachments), constraint:self.lineTopConstraint, imageView: self.postImageView)
+        
+        self.setTextPostData(item: item)
     }
     
     func prepareCellWith(item:Item, profile: Profile){
         self.postNameLabel.text = profile.fullname
         
-        self.downloadAvatarImage(url: profile.phtoUrl)
-        self.downloadMainImage(attachmentsArr: Array(item.attachments))
+        downloadAvatarImage(url: profile.phtoUrl, imageView: self.avatarImageView)
+        downloadMainImage(attachmentsArr: Array(item.attachments), constraint:self.lineTopConstraint, imageView: self.postImageView)
         
-        self.setPost(item: item)
+        self.setTextPostData(item: item)
     }
     
     //MARK: Helper methods
-    func setPost(item: Item){
+    func setTextPostData(item: Item){
         self.currentItem = item
         self.postDateLabel.text = item.postedDate
         self.postTextLabel.text = item.text
@@ -79,20 +80,7 @@ class NewsCell: UITableViewCell {
         self.postRepostsLabel.text  = String(describing: repCount)
     }
     
-    func downloadAvatarImage(url: URL?){
-        guard let pUrl = url else {return}
-        self.avatarImageView.sd_setImage(with: pUrl)
-        self.avatarImageView.fs_cornerRadius = self.avatarImageView.fs_width/2
-    }
-    
-    func downloadMainImage(attachmentsArr: [Attachment]){
-        guard attachmentsArr.count > 0 else {
-            self.lineTopConstraint.priority = 999; return}
-        self.lineTopConstraint.priority = UILayoutPriorityDefaultLow
-        guard let pUrl = attachmentsArr[0].typeContent?.phtoUrl else {return}
-        self.postImageView.sd_setImage(with: pUrl)
-        
-    }
+   
     
     //MARK: Buttons action
     
