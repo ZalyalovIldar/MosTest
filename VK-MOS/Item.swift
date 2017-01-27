@@ -27,7 +27,7 @@ class Item: Object {
     }
     
     override static func primaryKey() -> String? {
-        return "sourceId"
+        return "postId"
     }
     
     required convenience init?(map: ObjectMapper.Map) {
